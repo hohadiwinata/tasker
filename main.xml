@@ -379,6 +379,20 @@ Note 2: In the same Preferences screen you can enable this to work with the scre
 			<pkg0>com.whatsapp</pkg0>
 		</App>
 	</Profile>
+	<Profile sr="prof56" ve="2">
+		<cdate>1790144243824</cdate>
+		<edate>1790144243824</edate>
+		<flags>10</flags>
+		<id>56</id>
+		<mid0>54</mid0>
+		<mid1>55</mid1>
+		<App sr="con0" ve="2">
+			<cls0>com.linksone.MainActivity</cls0>
+			<flags>2</flags>
+			<label0>Links One</label0>
+			<pkg0>com.linksone</pkg0>
+		</App>
+	</Profile>
 	<Profile sr="prof68" ve="2">
 		<cdate>1731567605049</cdate>
 		<edate>1735258176601</edate>
@@ -587,10 +601,10 @@ Note 2: In the same Preferences screen you can enable this to work with the scre
 	<Project sr="proj1" ve="2">
 		<cdate>1731320097915</cdate>
 		<id>a5a11a6a-6a98-4829-9ce0-08cf27fb8df9</id>
-		<mdate>1747378703758</mdate>
+		<mdate>1790144243824</mdate>
 		<name>Work</name>
-		<pids>28,30,68,72,76,77,79,81,84</pids>
-		<tids>33,41,70,24,69,71,73,75,80,82,83,19,20,44</tids>
+		<pids>28,30,68,72,76,77,79,81,84,56</pids>
+		<tids>33,41,70,24,69,71,73,75,80,82,83,19,20,44,54,55</tids>
 		<Img sr="icon" ve="2">
 			<nme>mw_action_card_giftcard</nme>
 		</Img>
@@ -2485,6 +2499,76 @@ Only available if you select &amp;lt;b&amp;gt;Continue Task After Error&amp;lt;/
 			<Int sr="arg1" val="0"/>
 			<Int sr="arg2" val="0"/>
 			<Int sr="arg3" val="0"/>
+		</Action>
+	</Task>
+	<Task sr="task54">
+		<cdate>1790142907327</cdate>
+		<edate>1790142951056</edate>
+		<id>54</id>
+		<nme>Set Linksone Variable</nme>
+		<Action sr="act0" ve="7">
+			<code>548</code>
+			<Str sr="arg0" ve="3">Set Linksone True</Str>
+			<Int sr="arg1" val="0"/>
+			<Str sr="arg10" ve="3"/>
+			<Int sr="arg11" val="1"/>
+			<Int sr="arg12" val="0"/>
+			<Str sr="arg13" ve="3"/>
+			<Int sr="arg14" val="0"/>
+			<Str sr="arg15" ve="3"/>
+			<Int sr="arg2" val="0"/>
+			<Str sr="arg3" ve="3"/>
+			<Str sr="arg4" ve="3"/>
+			<Str sr="arg5" ve="3"/>
+			<Str sr="arg6" ve="3"/>
+			<Str sr="arg7" ve="3"/>
+			<Str sr="arg8" ve="3"/>
+			<Int sr="arg9" val="1"/>
+		</Action>
+		<Action sr="act1" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%Linksone</Str>
+			<Str sr="arg1" ve="3">True</Str>
+			<Int sr="arg2" val="0"/>
+			<Int sr="arg3" val="0"/>
+			<Int sr="arg4" val="0"/>
+			<Int sr="arg5" val="3"/>
+			<Int sr="arg6" val="1"/>
+		</Action>
+	</Task>
+	<Task sr="task55">
+		<cdate>1790142907327</cdate>
+		<edate>1790142989304</edate>
+		<id>55</id>
+		<nme>Unset Linksone Variable</nme>
+		<Action sr="act0" ve="7">
+			<code>548</code>
+			<Str sr="arg0" ve="3">Set Linksone True</Str>
+			<Int sr="arg1" val="0"/>
+			<Str sr="arg10" ve="3"/>
+			<Int sr="arg11" val="1"/>
+			<Int sr="arg12" val="0"/>
+			<Str sr="arg13" ve="3"/>
+			<Int sr="arg14" val="0"/>
+			<Str sr="arg15" ve="3"/>
+			<Int sr="arg2" val="0"/>
+			<Str sr="arg3" ve="3"/>
+			<Str sr="arg4" ve="3"/>
+			<Str sr="arg5" ve="3"/>
+			<Str sr="arg6" ve="3"/>
+			<Str sr="arg7" ve="3"/>
+			<Str sr="arg8" ve="3"/>
+			<Int sr="arg9" val="1"/>
+		</Action>
+		<Action sr="act1" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%Linksone</Str>
+			<Str sr="arg1" ve="3">False</Str>
+			<Int sr="arg2" val="0"/>
+			<Int sr="arg3" val="0"/>
+			<Int sr="arg4" val="0"/>
+			<Int sr="arg5" val="3"/>
+			<Int sr="arg6" val="1"/>
 		</Action>
 	</Task>
 	<Task sr="task6">
