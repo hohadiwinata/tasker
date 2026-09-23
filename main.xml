@@ -639,10 +639,10 @@ Note 2: In the same Preferences screen you can enable this to work with the scre
 	<Project sr="proj5" ve="2">
 		<cdate>1723343591135</cdate>
 		<id>c323ff76-835b-424c-b8f8-c29dc8b52dcd</id>
-		<mdate>1790132611105</mdate>
+		<mdate>1790138523207</mdate>
 		<name>Whatsapp</name>
 		<pids>51</pids>
-		<tids>13,50,52</tids>
+		<tids>13,50,52,53</tids>
 	</Project>
 	<Scene sr="sceneBubble Scene">
 		<cdate>1518262423058</cdate>
@@ -2472,6 +2472,19 @@ Only available if you select &amp;lt;b&amp;gt;Continue Task After Error&amp;lt;/
 			<Str sr="arg7" ve="3"/>
 			<Str sr="arg8" ve="3"/>
 			<Int sr="arg9" val="1"/>
+		</Action>
+	</Task>
+	<Task sr="task53">
+		<cdate>1790138496734</cdate>
+		<edate>1790138578531</edate>
+		<id>53</id>
+		<nme>Clear Variables</nme>
+		<Action sr="act0" ve="7">
+			<code>549</code>
+			<Str sr="arg0" ve="3">%Wywyw</Str>
+			<Int sr="arg1" val="0"/>
+			<Int sr="arg2" val="0"/>
+			<Int sr="arg3" val="0"/>
 		</Action>
 	</Task>
 	<Task sr="task6">
