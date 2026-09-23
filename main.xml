@@ -365,6 +365,20 @@ Note 2: In the same Preferences screen you can enable this to work with the scre
 			<tm>0</tm>
 		</Time>
 	</Profile>
+	<Profile sr="prof51" ve="2">
+		<cdate>1790131712759</cdate>
+		<edate>1790131712759</edate>
+		<flags>10</flags>
+		<id>51</id>
+		<mid0>50</mid0>
+		<mid1>52</mid1>
+		<App sr="con0" ve="2">
+			<cls0>com.whatsapp.Main</cls0>
+			<flags>2</flags>
+			<label0>WhatsApp</label0>
+			<pkg0>com.whatsapp</pkg0>
+		</App>
+	</Profile>
 	<Profile sr="prof68" ve="2">
 		<cdate>1731567605049</cdate>
 		<edate>1735258176601</edate>
@@ -625,9 +639,10 @@ Note 2: In the same Preferences screen you can enable this to work with the scre
 	<Project sr="proj5" ve="2">
 		<cdate>1723343591135</cdate>
 		<id>c323ff76-835b-424c-b8f8-c29dc8b52dcd</id>
-		<mdate>1723694095268</mdate>
+		<mdate>1790132611105</mdate>
 		<name>Whatsapp</name>
-		<tids>13</tids>
+		<pids>51</pids>
+		<tids>13,50,52</tids>
 	</Project>
 	<Scene sr="sceneBubble Scene">
 		<cdate>1518262423058</cdate>
@@ -899,7 +914,7 @@ Note 2: In the same Preferences screen you can enable this to work with the scre
 	</Task>
 	<Task sr="task13">
 		<cdate>1632989989077</cdate>
-		<edate>1790036734568</edate>
+		<edate>1790131309652</edate>
 		<id>13</id>
 		<nme>Non-Contact WhatsApp Message</nme>
 		<pri>7</pri>
@@ -2371,6 +2386,77 @@ Only available if you select &amp;lt;b&amp;gt;Continue Task After Error&amp;lt;/
 		<Action sr="act0" ve="7">
 			<code>548</code>
 			<Str sr="arg0" ve="3">Hello World</Str>
+			<Int sr="arg1" val="0"/>
+			<Str sr="arg10" ve="3"/>
+			<Int sr="arg11" val="1"/>
+			<Int sr="arg12" val="0"/>
+			<Str sr="arg13" ve="3"/>
+			<Int sr="arg14" val="0"/>
+			<Str sr="arg15" ve="3"/>
+			<Int sr="arg2" val="0"/>
+			<Str sr="arg3" ve="3"/>
+			<Str sr="arg4" ve="3"/>
+			<Str sr="arg5" ve="3"/>
+			<Str sr="arg6" ve="3"/>
+			<Str sr="arg7" ve="3"/>
+			<Str sr="arg8" ve="3"/>
+			<Int sr="arg9" val="1"/>
+		</Action>
+	</Task>
+	<Task sr="task50">
+		<cdate>1790131589713</cdate>
+		<edate>1790132511877</edate>
+		<id>50</id>
+		<nme>Set WhatsApp Variable</nme>
+		<pri>100</pri>
+		<Action sr="act0" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%Whatsapp</Str>
+			<Str sr="arg1" ve="3">True</Str>
+			<Int sr="arg2" val="0"/>
+			<Int sr="arg3" val="0"/>
+			<Int sr="arg4" val="0"/>
+			<Int sr="arg5" val="3"/>
+			<Int sr="arg6" val="1"/>
+		</Action>
+		<Action sr="act1" ve="7">
+			<code>548</code>
+			<Str sr="arg0" ve="3">Setting Whatsapp to True</Str>
+			<Int sr="arg1" val="0"/>
+			<Str sr="arg10" ve="3"/>
+			<Int sr="arg11" val="1"/>
+			<Int sr="arg12" val="0"/>
+			<Str sr="arg13" ve="3"/>
+			<Int sr="arg14" val="0"/>
+			<Str sr="arg15" ve="3"/>
+			<Int sr="arg2" val="0"/>
+			<Str sr="arg3" ve="3"/>
+			<Str sr="arg4" ve="3"/>
+			<Str sr="arg5" ve="3"/>
+			<Str sr="arg6" ve="3"/>
+			<Str sr="arg7" ve="3"/>
+			<Str sr="arg8" ve="3"/>
+			<Int sr="arg9" val="1"/>
+		</Action>
+	</Task>
+	<Task sr="task52">
+		<cdate>1790131743930</cdate>
+		<edate>1790132611105</edate>
+		<id>52</id>
+		<nme>Unset WhatsApp Variable</nme>
+		<Action sr="act0" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%Whatsapp</Str>
+			<Str sr="arg1" ve="3">False</Str>
+			<Int sr="arg2" val="0"/>
+			<Int sr="arg3" val="0"/>
+			<Int sr="arg4" val="0"/>
+			<Int sr="arg5" val="3"/>
+			<Int sr="arg6" val="1"/>
+		</Action>
+		<Action sr="act1" ve="7">
+			<code>548</code>
+			<Str sr="arg0" ve="3">Setting Whatsapp To False</Str>
 			<Int sr="arg1" val="0"/>
 			<Str sr="arg10" ve="3"/>
 			<Int sr="arg11" val="1"/>
