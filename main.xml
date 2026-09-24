@@ -633,13 +633,27 @@ Note 2: In the same Preferences screen you can enable this to work with the scre
 			<wday4>6</wday4>
 		</Day>
 	</Profile>
+	<Profile sr="prof87" ve="2">
+		<cdate>1790220190087</cdate>
+		<edate>1790220190087</edate>
+		<flags>11</flags>
+		<id>87</id>
+		<mid0>697</mid0>
+		<nme>Hong Kong Countdown Daily Refresh</nme>
+		<Time sr="con0">
+			<fh>0</fh>
+			<fm>5</fm>
+			<th>0</th>
+			<tm>5</tm>
+		</Time>
+	</Profile>
 	<Project sr="proj0" ve="2">
 		<cdate>1722002391802</cdate>
 		<id>a1aab72b-a77d-407a-82aa-e120bbcd87fb</id>
 		<mdate>1734586340354</mdate>
 		<name>Base</name>
-		<pids>18,4,17,3,27,34,32,23</pids>
-		<tids>36,6,694,16,29,37,38,42</tids>
+		<pids>18,4,17,3,27,34,32,23,87</pids>
+		<tids>36,6,694,16,29,37,38,42,697</tids>
 		<Img sr="icon" ve="2">
 			<nme>mw_action_home</nme>
 		</Img>
@@ -3472,6 +3486,165 @@ if (response_code === "200" &amp;&amp; /&lt;section[^&gt;]+id=["']booking["']/i.
 			<Int sr="arg6" val="0"/>
 			<Int sr="arg7" val="0"/>
 			<Int sr="arg8" val="0"/>
+			<Str sr="arg9" ve="3"/>
+		</Action>
+	</Task>
+	<Task sr="task697">
+		<cdate>1790220190087</cdate>
+		<edate>1790220190087</edate>
+		<id>697</id>
+		<nme>Hong Kong Countdown</nme>
+		<pri>6</pri>
+		<Action sr="act0" ve="7">
+			<code>129</code>
+			<Str sr="arg0" ve="3">// Paste this into a Tasker JavaScriptlet action. Tasker passes the resulting
+// %widget_layout variable to the following Widget v2 action.
+var widget_layout = (function () {
+    var hongKongNow = new Date(Date.now() + 8 * 60 * 60 * 1000);
+    var today = Date.UTC(
+        hongKongNow.getUTCFullYear(),
+        hongKongNow.getUTCMonth(),
+        hongKongNow.getUTCDate()
+    );
+    var departure = Date.UTC(2026, 10, 22);
+    var days = Math.round((departure - today) / (24 * 60 * 60 * 1000));
+
+    var number = days &gt; 0 ? String(days) : days === 0 ? "TODAY" : "✈";
+    var caption = days &gt; 1 ? "DAYS TO GO" : days === 1 ? "DAY TO GO" :
+        days === 0 ? "YOUR ADVENTURE BEGINS" : "HOPE YOU ENJOYED THE TRIP";
+
+    return JSON.stringify({
+        type: "Column",
+        fillMaxSize: true,
+        padding: 18,
+        cornerRadius: 24,
+        backgroundColor: "#102D38",
+        horizontalAlignment: "Start",
+        verticalAlignment: "Center",
+        task: "Hong Kong Countdown",
+        children: [
+            {
+                type: "Row",
+                fillMaxWidth: true,
+                verticalAlignment: "Center",
+                children: [
+                    {
+                        type: "Text",
+                        text: "✈  BOARDING PASS",
+                        color: "#FFC886",
+                        textSize: 12,
+                        bold: true
+                    },
+                    { type: "Spacer", isWeighted: true },
+                    {
+                        type: "Text",
+                        text: "HKG",
+                        color: "#FFFFFF",
+                        textSize: 15,
+                        bold: true
+                    }
+                ]
+            },
+            { type: "Spacer", height: 10 },
+            {
+                type: "Text",
+                text: "HONG KONG",
+                color: "#FFFFFF",
+                textSize: 23,
+                bold: true,
+                maxLines: 1
+            },
+            {
+                type: "Text",
+                text: "YOUR NEXT ADVENTURE",
+                color: "#9FC3C8",
+                textSize: 10,
+                maxLines: 1
+            },
+            { type: "Spacer", height: 9 },
+            {
+                type: "Row",
+                fillMaxWidth: true,
+                verticalAlignment: "Bottom",
+                children: [
+                    {
+                        type: "Text",
+                        text: number,
+                        color: "#FFC886",
+                        textSize: days &gt; 0 ? 48 : 34,
+                        bold: true,
+                        maxLines: 1
+                    },
+                    { type: "Spacer", width: 10 },
+                    {
+                        type: "Text",
+                        text: caption,
+                        color: "#FFFFFF",
+                        textSize: 11,
+                        bold: true,
+                        maxLines: 2
+                    }
+                ]
+            },
+            { type: "Spacer", height: 8 },
+            {
+                type: "Text",
+                text: "- - - - - - - - - - - - - - - - - - - -",
+                color: "#53727B",
+                textSize: 10,
+                maxLines: 1
+            },
+            {
+                type: "Row",
+                fillMaxWidth: true,
+                children: [
+                    {
+                        type: "Text",
+                        text: "DEPARTURE  ·  22 NOV 2026",
+                        color: "#D7E7E8",
+                        textSize: 10,
+                        maxLines: 1
+                    },
+                    { type: "Spacer", isWeighted: true },
+                    {
+                        type: "Text",
+                        text: "HK  ✦",
+                        color: "#FFC886",
+                        textSize: 10,
+                        maxLines: 1
+                    }
+                ]
+            }
+        ]
+    });
+})();</Str>
+			<Str sr="arg1" ve="3"/>
+			<Int sr="arg2" val="1"/>
+			<Int sr="arg3" val="45"/>
+		</Action>
+		<Action sr="act1" ve="7">
+			<code>461</code>
+			<Bundle sr="arg0">
+				<Vals sr="val">
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES>&lt;StringArray sr=""/&gt;</net.dinglisch.android.tasker.RELEVANT_VARIABLES>
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>[Ljava.lang.String;</net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>
+				</Vals>
+			</Bundle>
+			<Str sr="arg1" ve="3">Countdown</Str>
+			<Str sr="arg10" ve="3"/>
+			<Str sr="arg11" ve="3"/>
+			<Str sr="arg12" ve="3"/>
+			<Str sr="arg13" ve="3">%widget_layout</Str>
+			<Int sr="arg14" val="0"/>
+			<Str sr="arg15" ve="3"/>
+			<Int sr="arg16" val="0"/>
+			<Str sr="arg2" ve="3">Custom</Str>
+			<Str sr="arg3" ve="3"/>
+			<Str sr="arg4" ve="3"/>
+			<Str sr="arg5" ve="3"/>
+			<Str sr="arg6" ve="3"/>
+			<Str sr="arg7" ve="3"/>
+			<Str sr="arg8" ve="3"/>
 			<Str sr="arg9" ve="3"/>
 		</Action>
 	</Task>
