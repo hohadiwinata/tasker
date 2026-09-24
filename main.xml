@@ -163,10 +163,9 @@ Unique package name for the app&lt;/_array_net.dinglisch.android.tasker.RELEVANT
 	</Profile>
 	<Profile sr="prof27" ve="2">
 		<cdate>1727241266612</cdate>
-		<edate>1790144705188</edate>
+		<edate>1790149233353</edate>
 		<flags>10</flags>
 		<id>27</id>
-		<limit>true</limit>
 		<mid0>6</mid0>
 		<Event sr="con0" ve="2">
 			<code>2077</code>
@@ -335,7 +334,7 @@ The intent category that opened the secondary app. Can be empty.&lt;/_array_net.
 	</Profile>
 	<Profile sr="prof46" ve="2">
 		<cdate>1773551427420</cdate>
-		<edate>1773614618612</edate>
+		<edate>1790172842890</edate>
 		<flags>10</flags>
 		<id>46</id>
 		<limit>true</limit>
@@ -384,7 +383,7 @@ Note 2: In the same Preferences screen you can enable this to work with the scre
 	</Profile>
 	<Profile sr="prof56" ve="2">
 		<cdate>1790144243824</cdate>
-		<edate>1790144243824</edate>
+		<edate>1790149164621</edate>
 		<flags>10</flags>
 		<id>56</id>
 		<mid0>54</mid0>
@@ -422,9 +421,10 @@ Note 2: In the same Preferences screen you can enable this to work with the scre
 	<Profile sr="prof72" ve="2">
 		<cdate>1732017712333</cdate>
 		<cldm>300</cldm>
-		<edate>1732666496270</edate>
-		<flags>14</flags>
+		<edate>1790167636519</edate>
+		<flags>10</flags>
 		<id>72</id>
+		<limit>true</limit>
 		<mid0>73</mid0>
 		<nme>Set Timeclock In Variable</nme>
 		<Time sr="con0">
@@ -446,7 +446,7 @@ Note 2: In the same Preferences screen you can enable this to work with the scre
 	<Profile sr="prof76" ve="2">
 		<cdate>1732017712333</cdate>
 		<cldm>300</cldm>
-		<edate>1790143006498</edate>
+		<edate>1790167630626</edate>
 		<flags>10</flags>
 		<id>76</id>
 		<limit>true</limit>
@@ -470,7 +470,7 @@ Note 2: In the same Preferences screen you can enable this to work with the scre
 		<cdate>1732182372945</cdate>
 		<cldm>300</cldm>
 		<edate>1790145415094</edate>
-		<flags>9</flags>
+		<flags>11</flags>
 		<id>77</id>
 		<mid0>83</mid0>
 		<nme>Morning TimeClock Notification</nme>
@@ -1099,7 +1099,7 @@ The size of the response in bytes&lt;/_array_net.dinglisch.android.tasker.RELEVA
 	</Task>
 	<Task sr="task16">
 		<cdate>1641739178906</cdate>
-		<edate>1741492831570</edate>
+		<edate>1790167686011</edate>
 		<id>16</id>
 		<nme>Tell Time</nme>
 		<pri>6</pri>
@@ -1322,7 +1322,7 @@ Only available if you select &amp;lt;b&amp;gt;Continue Task After Error&amp;lt;/
 	</Task>
 	<Task sr="task24">
 		<cdate>1731455579430</cdate>
-		<edate>1790139688641</edate>
+		<edate>1790150691547</edate>
 		<id>24</id>
 		<nme>Hoya</nme>
 		<pri>6</pri>
@@ -1407,6 +1407,9 @@ Time in milliseconds that it took for Tasker to get the location&lt;/_array_net.
 			<Int sr="arg6" val="1"/>
 		</Action>
 		<Action sr="act11" ve="7">
+			<code>38</code>
+		</Action>
+		<Action sr="act12" ve="7">
 			<code>38</code>
 		</Action>
 		<Action sr="act2" ve="7">
@@ -1691,7 +1694,7 @@ Time in milliseconds that it took for Tasker to get the location&lt;/_array_net.
 	</Task>
 	<Task sr="task33">
 		<cdate>1731383980455</cdate>
-		<edate>1790144530685</edate>
+		<edate>1790208010928</edate>
 		<id>33</id>
 		<nme>Launch Timeclock</nme>
 		<pri>100</pri>
@@ -1870,7 +1873,7 @@ Time in milliseconds that it took for Tasker to get the location&lt;/_array_net.
 		<cdate>1518263035332</cdate>
 		<edate>1518263035332</edate>
 		<id>396</id>
-		<pri>106</pri>
+		<pri>112</pri>
 		<Action sr="act0" ve="7">
 			<code>511</code>
 			<Int sr="arg0" val="2"/>
@@ -1881,7 +1884,7 @@ Time in milliseconds that it took for Tasker to get the location&lt;/_array_net.
 		<cdate>1518449749026</cdate>
 		<edate>1518449749026</edate>
 		<id>397</id>
-		<pri>104</pri>
+		<pri>118</pri>
 		<Action sr="act0" ve="7">
 			<code>194</code>
 			<Str sr="arg0" ve="3">Bubble Scene</Str>
@@ -2132,7 +2135,7 @@ Time in milliseconds that it took for Tasker to get the location&lt;/_array_net.
 	</Task>
 	<Task sr="task398">
 		<cdate>1518302519654</cdate>
-		<edate>1790124984999</edate>
+		<edate>1790172944716</edate>
 		<id>398</id>
 		<nme>Torch Bubble Scene</nme>
 		<pri>100</pri>
@@ -2234,7 +2237,7 @@ Time in milliseconds that it took for Tasker to get the location&lt;/_array_net.
 		<cdate>1611484907956</cdate>
 		<edate>1611484907956</edate>
 		<id>399</id>
-		<pri>106</pri>
+		<pri>118</pri>
 		<Action sr="act0" ve="7">
 			<code>49</code>
 			<Str sr="arg0" ve="3">Bubble Scene</Str>
@@ -2252,7 +2255,7 @@ Time in milliseconds that it took for Tasker to get the location&lt;/_array_net.
 	</Task>
 	<Task sr="task41">
 		<cdate>1731390091689</cdate>
-		<edate>1790139680299</edate>
+		<edate>1790167541837</edate>
 		<id>41</id>
 		<nme>Set Work Volume</nme>
 		<pri>100</pri>
@@ -2272,7 +2275,7 @@ Time in milliseconds that it took for Tasker to get the location&lt;/_array_net.
 	</Task>
 	<Task sr="task42">
 		<cdate>1731974335687</cdate>
-		<edate>1741492837350</edate>
+		<edate>1790160671852</edate>
 		<id>42</id>
 		<nme>Gshock Move App</nme>
 		<pri>6</pri>
@@ -2369,7 +2372,7 @@ Only available if you select &amp;lt;b&amp;gt;Continue Task After Error&amp;lt;/
 	</Task>
 	<Task sr="task45">
 		<cdate>1626800593074</cdate>
-		<edate>1773557964664</edate>
+		<edate>1790172840419</edate>
 		<id>45</id>
 		<pri>6</pri>
 		<Action sr="act0" ve="7">
@@ -2507,7 +2510,7 @@ Only available if you select &amp;lt;b&amp;gt;Continue Task After Error&amp;lt;/
 	</Task>
 	<Task sr="task54">
 		<cdate>1790142907327</cdate>
-		<edate>1790142951056</edate>
+		<edate>1790149164621</edate>
 		<id>54</id>
 		<nme>Set Linksone Variable</nme>
 		<Action sr="act0" ve="7">
@@ -2577,7 +2580,7 @@ Only available if you select &amp;lt;b&amp;gt;Continue Task After Error&amp;lt;/
 	</Task>
 	<Task sr="task6">
 		<cdate>1722166986022</cdate>
-		<edate>1790144369091</edate>
+		<edate>1790162300085</edate>
 		<id>6</id>
 		<nme>Tap Tap</nme>
 		<pri>6</pri>
@@ -2836,7 +2839,7 @@ Only available if you select &amp;lt;b&amp;gt;Continue Task After Error&amp;lt;/
 	</Task>
 	<Task sr="task7">
 		<cdate>1722176982620</cdate>
-		<edate>1727325260398</edate>
+		<edate>1790173160782</edate>
 		<id>7</id>
 		<nme>Torch Activation</nme>
 		<pri>100</pri>
@@ -2886,7 +2889,7 @@ Only available if you select &amp;lt;b&amp;gt;Continue Task After Error&amp;lt;/
 	</Task>
 	<Task sr="task70">
 		<cdate>1731417831626</cdate>
-		<edate>1790139682237</edate>
+		<edate>1790167538326</edate>
 		<id>70</id>
 		<nme>Notification Volume High</nme>
 		<Action sr="act0" ve="7">
@@ -3192,7 +3195,7 @@ Only available if you select &amp;lt;b&amp;gt;Continue Task After Error&amp;lt;/
 	</Task>
 	<Task sr="task82">
 		<cdate>1732578530490</cdate>
-		<edate>1790139678163</edate>
+		<edate>1790167549409</edate>
 		<id>82</id>
 		<nme>Assume Working</nme>
 		<Action sr="act0" ve="7">
@@ -3208,10 +3211,10 @@ Only available if you select &amp;lt;b&amp;gt;Continue Task After Error&amp;lt;/
 	</Task>
 	<Task sr="task83">
 		<cdate>1732839359832</cdate>
-		<edate>1790145415094</edate>
+		<edate>1790211348397</edate>
 		<id>83</id>
 		<nme>Timeclock Notification</nme>
-		<pri>100</pri>
+		<pri>6</pri>
 		<Action sr="act0" ve="7">
 			<code>62</code>
 			<Str sr="arg0" ve="3">0,200,100,400</Str>
