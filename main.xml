@@ -476,11 +476,11 @@ Note 2: In the same Preferences screen you can enable this to work with the scre
 		<nme>Morning TimeClock Notification</nme>
 		<Time sr="con0">
 			<fh>7</fh>
-			<fm>55</fm>
+			<fm>50</fm>
 			<rep>2</rep>
 			<repval>10</repval>
 			<th>8</th>
-			<tm>30</tm>
+			<tm>20</tm>
 		</Time>
 		<Day sr="con1">
 			<wday0>2</wday0>
@@ -591,6 +591,27 @@ Note 2: In the same Preferences screen you can enable this to work with the scre
 			<wday4>6</wday4>
 		</Day>
 	</Profile>
+	<Profile sr="prof85" ve="2">
+		<cdate>1790212694041</cdate>
+		<edate>1790212694041</edate>
+		<flags>11</flags>
+		<id>85</id>
+		<mid0>695</mid0>
+		<nme>Clear Morning TimeClock Notification</nme>
+		<Time sr="con0">
+			<fh>8</fh>
+			<fm>30</fm>
+			<th>8</th>
+			<tm>30</tm>
+		</Time>
+		<Day sr="con1">
+			<wday0>2</wday0>
+			<wday1>3</wday1>
+			<wday2>4</wday2>
+			<wday3>5</wday3>
+			<wday4>6</wday4>
+		</Day>
+	</Profile>
 	<Project sr="proj0" ve="2">
 		<cdate>1722002391802</cdate>
 		<id>a1aab72b-a77d-407a-82aa-e120bbcd87fb</id>
@@ -607,8 +628,8 @@ Note 2: In the same Preferences screen you can enable this to work with the scre
 		<id>a5a11a6a-6a98-4829-9ce0-08cf27fb8df9</id>
 		<mdate>1790144243824</mdate>
 		<name>Work</name>
-		<pids>28,30,68,72,76,77,79,81,84,56</pids>
-		<tids>33,41,70,24,69,71,73,75,80,82,83,19,20,44,54,55</tids>
+		<pids>28,30,68,72,76,77,79,81,84,85,56</pids>
+		<tids>33,41,70,24,69,71,73,75,80,82,83,695,19,20,44,54,55</tids>
 		<Img sr="icon" ve="2">
 			<nme>mw_action_card_giftcard</nme>
 		</Img>
@@ -3244,7 +3265,7 @@ Only available if you select &amp;lt;b&amp;gt;Continue Task After Error&amp;lt;/
 				<nme>mw_navigation_arrow_drop_down_circle</nme>
 			</Img>
 			<Int sr="arg3" val="0"/>
-			<Int sr="arg4" val="0"/>
+			<Int sr="arg4" val="1"/>
 			<Int sr="arg5" val="1"/>
 			<Int sr="arg6" val="0"/>
 			<Int sr="arg7" val="5"/>
@@ -3349,6 +3370,18 @@ Only available if you select &amp;lt;b&amp;gt;Continue Task After Error&amp;lt;/
 			<Int sr="arg0" val="1"/>
 			<Str sr="arg1" ve="3">Zelda Majoras Mask</Str>
 			<Int sr="arg2" val="5"/>
+		</Action>
+	</Task>
+	<Task sr="task695">
+		<cdate>1790212694041</cdate>
+		<edate>1790212694041</edate>
+		<id>695</id>
+		<nme>Clear Morning TimeClock Notification</nme>
+		<pri>6</pri>
+		<Action sr="act0" ve="7">
+			<code>779</code>
+			<Str sr="arg0" ve="3">Morning Clock IN</Str>
+			<Int sr="arg1" val="0"/>
 		</Action>
 	</Task>
 </TaskerData>
