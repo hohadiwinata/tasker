@@ -612,6 +612,27 @@ Note 2: In the same Preferences screen you can enable this to work with the scre
 			<wday4>6</wday4>
 		</Day>
 	</Profile>
+	<Profile sr="prof86" ve="2">
+		<cdate>1790216839000</cdate>
+		<edate>1790216839000</edate>
+		<flags>11</flags>
+		<id>86</id>
+		<mid0>696</mid0>
+		<nme>Chairman Weekday Morning Check</nme>
+		<Time sr="con0">
+			<fh>7</fh>
+			<fm>45</fm>
+			<th>7</th>
+			<tm>45</tm>
+		</Time>
+		<Day sr="con1">
+			<wday0>2</wday0>
+			<wday1>3</wday1>
+			<wday2>4</wday2>
+			<wday3>5</wday3>
+			<wday4>6</wday4>
+		</Day>
+	</Profile>
 	<Project sr="proj0" ve="2">
 		<cdate>1722002391802</cdate>
 		<id>a1aab72b-a77d-407a-82aa-e120bbcd87fb</id>
@@ -669,8 +690,8 @@ Note 2: In the same Preferences screen you can enable this to work with the scre
 		<id>a58406db-c0da-4194-928e-c8bb1471efdb</id>
 		<mdate>1734609122723</mdate>
 		<name>Test</name>
-		<pids>31,22,43</pids>
-		<tids>5,10,2,35,39,40,15,21</tids>
+		<pids>31,22,43,86</pids>
+		<tids>5,10,2,35,39,40,15,21,696</tids>
 		<Img sr="icon" ve="2">
 			<nme>mw_action_build</nme>
 		</Img>
@@ -3382,6 +3403,76 @@ Only available if you select &amp;lt;b&amp;gt;Continue Task After Error&amp;lt;/
 			<code>779</code>
 			<Str sr="arg0" ve="3">Morning Clock IN</Str>
 			<Int sr="arg1" val="0"/>
+		</Action>
+	</Task>
+	<Task sr="task696">
+		<cdate>1790215138310</cdate>
+		<edate>1790215717000</edate>
+		<id>696</id>
+		<nme>Check The Chairman Reservations</nme>
+		<pri>100</pri>
+		<Action sr="act0" ve="7">
+			<code>339</code>
+			<se>false</se>
+			<Int sr="arg1" val="0"/>
+			<Int sr="arg10" val="1"/>
+			<Int sr="arg11" val="1"/>
+			<Int sr="arg12" val="0"/>
+			<Str sr="arg2" ve="3">https://www.thechairmangroup.com/index.php?route=catering/booking&amp;btabid=111</Str>
+			<Str sr="arg3" ve="3"/>
+			<Str sr="arg4" ve="3"/>
+			<Str sr="arg5" ve="3"/>
+			<Str sr="arg6" ve="3"/>
+			<Str sr="arg7" ve="3"/>
+			<Int sr="arg8" val="30"/>
+			<Int sr="arg9" val="0"/>
+		</Action>
+		<Action sr="act1" ve="7">
+			<code>129</code>
+			<Str sr="arg0" ve="3">var reservation_result = "Unable to determine reservation status. Check the page.";
+var response_code = typeof http_response_code === "undefined" ? "" : String(http_response_code);
+var page = typeof http_data === "undefined" ? "" : String(http_data);
+if (response_code === "200" &amp;&amp; /&lt;section[^&gt;]+id=["']booking["']/i.test(page)) {
+  var day_classes = page.match(/class=["'][^"']*\bday\b[^"']*["']/ig) || [];
+  var available_day = /id=["']booking-schedule["']/i.test(page) &amp;&amp;
+    day_classes.some(function (classes) {
+      return /\b(normal|today)\b/i.test(classes) &amp;&amp;
+        !/\b(full|blank|disabled)\b/i.test(classes);
+    });
+  if (available_day) {
+    reservation_result = "A selectable reservation date appears on the page. Check available times.";
+  } else if (/fully booked/i.test(page) &amp;&amp; !/id=["']booking-schedule["']/i.test(page)) {
+    reservation_result = "No reservation opening shown; the page says fully booked.";
+  }
+} else if (response_code === "302") {
+  reservation_result = "The reservation page redirected to a waiting room. Open it in a browser to check.";
+} else if (/queue-it|waiting room/i.test(page)) {
+  reservation_result = "The reservation page is in a waiting room. Open it in a browser to check.";
+} else if (response_code !== "200") {
+  reservation_result = "Reservation check failed (HTTP " + (response_code || "error") + ").";
+}</Str>
+			<Str sr="arg1" ve="3"/>
+			<Int sr="arg2" val="1"/>
+			<Int sr="arg3" val="45"/>
+		</Action>
+		<Action sr="act2" ve="7">
+			<code>523</code>
+			<Str sr="arg0" ve="3">The Chairman reservation check</Str>
+			<Str sr="arg1" ve="3">%reservation_result</Str>
+			<Str sr="arg10" ve="3"/>
+			<Str sr="arg11" ve="3"/>
+			<Str sr="arg12" ve="3"/>
+			<Int sr="arg13" val="0"/>
+			<Str sr="arg14" ve="3"/>
+			<Str sr="arg15" ve="3"/>
+			<Img sr="arg2" ve="2"/>
+			<Int sr="arg3" val="0"/>
+			<Int sr="arg4" val="0"/>
+			<Int sr="arg5" val="1"/>
+			<Int sr="arg6" val="0"/>
+			<Int sr="arg7" val="0"/>
+			<Int sr="arg8" val="0"/>
+			<Str sr="arg9" ve="3"/>
 		</Action>
 	</Task>
 </TaskerData>
