@@ -3200,8 +3200,8 @@ if (response_code === "200" &amp;&amp; /&lt;section[^&gt;]+id=["']booking["']/i.
 		<pri>6</pri>
 		<Action sr="act0" ve="7">
 			<code>129</code>
-			<Str sr="arg0" ve="3">// Paste this into a Tasker JavaScriptlet action. Tasker passes the resulting
-// %widget_layout variable to the following Widget v2 action.
+			<Str sr="arg0" ve="3">// Boarding-pass layout for the 1 x 2 "Countdown" Widget v2.
+// The following Widget v2 action uses %widget_layout as its Custom Layout.
 var widget_layout = (function () {
     var hongKongNow = new Date(Date.now() + 8 * 60 * 60 * 1000);
     var today = Date.UTC(
@@ -3214,106 +3214,98 @@ var widget_layout = (function () {
 
     var number = days &gt; 0 ? String(days) : days === 0 ? "TODAY" : "✈";
     var caption = days &gt; 1 ? "DAYS TO GO" : days === 1 ? "DAY TO GO" :
-        days === 0 ? "YOUR ADVENTURE BEGINS" : "HOPE YOU ENJOYED THE TRIP";
+        days === 0 ? "LET'S GO" : "ARRIVED";
 
     return JSON.stringify({
         type: "Column",
         fillMaxSize: true,
-        padding: 18,
-        cornerRadius: 24,
+        padding: 4,
+        cornerRadius: 18,
         backgroundColor: "#102D38",
-        horizontalAlignment: "Start",
+        useMaterialYouColors: false,
+        horizontalAlignment: "Center",
         verticalAlignment: "Center",
         task: "Hong Kong Countdown",
         children: [
             {
-                type: "Row",
-                fillMaxWidth: true,
-                verticalAlignment: "Center",
+                type: "Text",
+                text: "✈ BOARDING",
+                color: "#FFC886",
+                textSize: 8,
+                bold: true,
+                maxLines: 1
+            },
+            { type: "Spacer", isWeighted: true },
+            {
+                type: "Column",
+                horizontalAlignment: "Center",
                 children: [
-                    {
-                        type: "Text",
-                        text: "✈  BOARDING PASS",
-                        color: "#FFC886",
-                        textSize: 12,
-                        bold: true
-                    },
-                    { type: "Spacer", isWeighted: true },
                     {
                         type: "Text",
                         text: "HKG",
                         color: "#FFFFFF",
-                        textSize: 15,
-                        bold: true
+                        textSize: 28,
+                        bold: true,
+                        maxLines: 1
+                    },
+                    {
+                        type: "Text",
+                        text: "HONG KONG",
+                        color: "#9FC3C8",
+                        textSize: 8,
+                        bold: true,
+                        maxLines: 1
                     }
                 ]
             },
-            { type: "Spacer", height: 10 },
+            { type: "Spacer", isWeighted: true },
             {
-                type: "Text",
-                text: "HONG KONG",
-                color: "#FFFFFF",
-                textSize: 23,
-                bold: true,
-                maxLines: 1
-            },
-            {
-                type: "Text",
-                text: "YOUR NEXT ADVENTURE",
-                color: "#9FC3C8",
-                textSize: 10,
-                maxLines: 1
-            },
-            { type: "Spacer", height: 9 },
-            {
-                type: "Row",
-                fillMaxWidth: true,
-                verticalAlignment: "Bottom",
+                type: "Column",
+                horizontalAlignment: "Center",
                 children: [
                     {
                         type: "Text",
                         text: number,
                         color: "#FFC886",
-                        textSize: days &gt; 0 ? 48 : 34,
+                        textSize: days &gt; 0 ? (days &gt;= 100 ? 34 : 48) : 18,
                         bold: true,
                         maxLines: 1
                     },
-                    { type: "Spacer", width: 10 },
                     {
                         type: "Text",
                         text: caption,
                         color: "#FFFFFF",
-                        textSize: 11,
+                        textSize: 8,
                         bold: true,
-                        maxLines: 2
+                        maxLines: 1
                     }
                 ]
             },
-            { type: "Spacer", height: 8 },
+            { type: "Spacer", isWeighted: true },
             {
-                type: "Text",
-                text: "- - - - - - - - - - - - - - - - - - - -",
-                color: "#53727B",
-                textSize: 10,
-                maxLines: 1
+                type: "Box",
+                fillMaxWidth: true,
+                height: 1,
+                backgroundColor: "#80B6C1"
             },
             {
-                type: "Row",
-                fillMaxWidth: true,
+                type: "Column",
+                horizontalAlignment: "Center",
+                paddingTop: 4,
                 children: [
                     {
                         type: "Text",
-                        text: "DEPARTURE  ·  22 NOV 2026",
-                        color: "#D7E7E8",
-                        textSize: 10,
+                        text: "DEPARTURE",
+                        color: "#9FC3C8",
+                        textSize: 8,
                         maxLines: 1
                     },
-                    { type: "Spacer", isWeighted: true },
                     {
                         type: "Text",
-                        text: "HK  ✦",
-                        color: "#FFC886",
-                        textSize: 10,
+                        text: "22 NOV 26",
+                        color: "#FFFFFF",
+                        textSize: 11,
+                        bold: true,
                         maxLines: 1
                     }
                 ]
