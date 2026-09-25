@@ -86,31 +86,6 @@ This is the default sound: &lt;a href="https://joaoapps.com/Tasker/High%20tech%2
 			<Int sr="arg0" val="0"/>
 		</State>
 	</Profile>
-	<Profile sr="prof22" ve="2">
-		<cdate>1733962592727</cdate>
-		<edate>1734307896700</edate>
-		<flags>10</flags>
-		<id>22</id>
-		<limit>true</limit>
-		<mid0>20</mid0>
-		<Event sr="con0" ve="2">
-			<code>2078</code>
-			<pri>0</pri>
-			<Bundle sr="arg0">
-				<Vals sr="val">
-					<net.dinglisch.android.tasker.RELEVANT_VARIABLES>&lt;StringArray sr=""&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;%app_icon
-Icon
-Icon for the app&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES1&gt;%app_name
-Name
-Name of the App&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES1&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES2&gt;%app_package
-Package
-Unique package name for the app&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES2&gt;&lt;/StringArray&gt;</net.dinglisch.android.tasker.RELEVANT_VARIABLES>
-					<net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>[Ljava.lang.String;</net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>
-				</Vals>
-			</Bundle>
-			<Str sr="arg1" ve="3">com.db2llc.paydaytimeclock</Str>
-		</Event>
-	</Profile>
 	<Profile sr="prof23" ve="2">
 		<cdate>1734586340354</cdate>
 		<edate>1734586398745</edate>
@@ -810,10 +785,10 @@ The package name of the Extra Trigger app that triggered this event&lt;/_array_n
 	<Project sr="proj4" ve="2">
 		<cdate>1723087648881</cdate>
 		<id>a58406db-c0da-4194-928e-c8bb1471efdb</id>
-		<mdate>1790232391227</mdate>
+		<mdate>1790323822553</mdate>
 		<name>Test</name>
-		<pids>31,22,43,86,92,93</pids>
-		<tids>5,10,2,35,39,40,15,21,696,48,49,57,58</tids>
+		<pids>31,43,86,92,93</pids>
+		<tids>5,10,2,35,39,40,15,21,696,48,22</tids>
 		<Img sr="icon" ve="2">
 			<nme>mw_action_build</nme>
 		</Img>
@@ -1528,9 +1503,67 @@ Only available if you select &amp;lt;b&amp;gt;Continue Task After Error&amp;lt;/
 			<Int sr="arg0" val="0"/>
 		</Action>
 	</Task>
+	<Task sr="task22">
+		<cdate>1790323575467</cdate>
+		<edate>1790323822553</edate>
+		<id>22</id>
+		<nme>Paylah Scan</nme>
+		<pri>100</pri>
+		<Action sr="act0" ve="7">
+			<code>30</code>
+			<Int sr="arg0" val="0"/>
+			<Int sr="arg1" val="3"/>
+			<Int sr="arg2" val="0"/>
+			<Int sr="arg3" val="0"/>
+			<Int sr="arg4" val="0"/>
+		</Action>
+		<Action sr="act1" ve="7">
+			<code>107361459</code>
+			<Bundle sr="arg0">
+				<Vals sr="val">
+					<EnableDisableAccessibilityService>&lt;null&gt;</EnableDisableAccessibilityService>
+					<EnableDisableAccessibilityService-type>java.lang.String</EnableDisableAccessibilityService-type>
+					<Password>&lt;null&gt;</Password>
+					<Password-type>java.lang.String</Password-type>
+					<com.twofortyfouram.locale.intent.extra.BLURB>Actions To Perform: click(point,69.1667%\,62.2525%)
+Not In AutoInput: true
+Not In Tasker: true
+Separator: ,
+Check Millis: 1000</com.twofortyfouram.locale.intent.extra.BLURB>
+					<com.twofortyfouram.locale.intent.extra.BLURB-type>java.lang.String</com.twofortyfouram.locale.intent.extra.BLURB-type>
+					<net.dinglisch.android.tasker.JSON_ENCODED_KEYS>parameters</net.dinglisch.android.tasker.JSON_ENCODED_KEYS>
+					<net.dinglisch.android.tasker.JSON_ENCODED_KEYS-type>java.lang.String</net.dinglisch.android.tasker.JSON_ENCODED_KEYS-type>
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES>&lt;StringArray sr=""&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;%ailastbounds
+Last Bounds
+Bounds (left,top,right,bottom) of the item that the action last interacted with&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES1&gt;%ailastcoordinates
+Last Coordinates
+Center coordinates (x,y) of the item that the action last interacted with&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES1&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES2&gt;%err
+Error Code
+Only available if you select &amp;lt;b&amp;gt;Continue Task After Error&amp;lt;/b&amp;gt; and the action ends in error&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES2&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES3&gt;%errmsg
+Error Message
+Only available if you select &amp;lt;b&amp;gt;Continue Task After Error&amp;lt;/b&amp;gt; and the action ends in error&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES3&gt;&lt;/StringArray&gt;</net.dinglisch.android.tasker.RELEVANT_VARIABLES>
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>[Ljava.lang.String;</net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>
+					<net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS>parameters plugininstanceid plugintypeid </net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS>
+					<net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS-type>java.lang.String</net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS-type>
+					<net.dinglisch.android.tasker.subbundled>true</net.dinglisch.android.tasker.subbundled>
+					<net.dinglisch.android.tasker.subbundled-type>java.lang.Boolean</net.dinglisch.android.tasker.subbundled-type>
+					<parameters>{"_action":"click(point,69.1667%\\,62.2525%)","_additionalOptions":{"checkMs":"1000","separator":",","withCoordinates":false},"_whenToPerformAction":{"notInAutoInput":true,"notInTasker":true},"generatedValues":{}}</parameters>
+					<parameters-type>java.lang.String</parameters-type>
+					<plugininstanceid>cbd56d5d-8aee-4b4b-8a03-ca899b3d4576</plugininstanceid>
+					<plugininstanceid-type>java.lang.String</plugininstanceid-type>
+					<plugintypeid>com.joaomgcd.autoinput.intent.IntentActionv2</plugintypeid>
+					<plugintypeid-type>java.lang.String</plugintypeid-type>
+				</Vals>
+			</Bundle>
+			<Str sr="arg1" ve="3">com.joaomgcd.autoinput</Str>
+			<Str sr="arg2" ve="3">com.joaomgcd.autoinput.activity.ActivityConfigActionv2</Str>
+			<Int sr="arg3" val="60"/>
+			<Int sr="arg4" val="1"/>
+		</Action>
+	</Task>
 	<Task sr="task24">
 		<cdate>1731455579430</cdate>
-		<edate>1790150691547</edate>
+		<edate>1790325352551</edate>
 		<id>24</id>
 		<nme>Hoya</nme>
 		<pri>6</pri>
@@ -1631,16 +1664,6 @@ Time in milliseconds that it took for Tasker to get the location&lt;/_array_net.
 			</ConditionList>
 		</Action>
 		<Action sr="act3" ve="7">
-			<code>547</code>
-			<Str sr="arg0" ve="3">%Hoya</Str>
-			<Str sr="arg1" ve="3">True</Str>
-			<Int sr="arg2" val="0"/>
-			<Int sr="arg3" val="0"/>
-			<Int sr="arg4" val="0"/>
-			<Int sr="arg5" val="3"/>
-			<Int sr="arg6" val="1"/>
-		</Action>
-		<Action sr="act4" ve="7">
 			<code>445</code>
 			<Str sr="arg0" ve="3">Notifications/Cute Magical Bell.mp3</Str>
 			<Int sr="arg1" val="0"/>
@@ -1648,7 +1671,7 @@ Time in milliseconds that it took for Tasker to get the location&lt;/_array_net.
 			<Int sr="arg3" val="3"/>
 			<Int sr="arg4" val="1"/>
 		</Action>
-		<Action sr="act5" ve="7">
+		<Action sr="act4" ve="7">
 			<code>130</code>
 			<Str sr="arg0" ve="3">Set Work Volume</Str>
 			<Int sr="arg1">
@@ -1663,6 +1686,16 @@ Time in milliseconds that it took for Tasker to get the location&lt;/_array_net.
 			<Str sr="arg7" ve="3"/>
 			<Int sr="arg8" val="0"/>
 			<Int sr="arg9" val="0"/>
+		</Action>
+		<Action sr="act5" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%Hoya</Str>
+			<Str sr="arg1" ve="3">True</Str>
+			<Int sr="arg2" val="0"/>
+			<Int sr="arg3" val="0"/>
+			<Int sr="arg4" val="0"/>
+			<Int sr="arg5" val="3"/>
+			<Int sr="arg6" val="1"/>
 		</Action>
 		<Action sr="act6" ve="7">
 			<code>38</code>
@@ -1902,7 +1935,7 @@ Time in milliseconds that it took for Tasker to get the location&lt;/_array_net.
 	</Task>
 	<Task sr="task33">
 		<cdate>1731383980455</cdate>
-		<edate>1790208010928</edate>
+		<edate>1790325365713</edate>
 		<id>33</id>
 		<nme>Launch Timeclock</nme>
 		<pri>100</pri>
@@ -1917,6 +1950,7 @@ Time in milliseconds that it took for Tasker to get the location&lt;/_array_net.
 		</Action>
 		<Action sr="act1" ve="7">
 			<code>37</code>
+			<on>false</on>
 			<ConditionList sr="if">
 				<Condition sr="c0" ve="3">
 					<lhs>%Hoya</lhs>
@@ -1942,6 +1976,7 @@ Time in milliseconds that it took for Tasker to get the location&lt;/_array_net.
 		</Action>
 		<Action sr="act4" ve="7">
 			<code>38</code>
+			<on>false</on>
 		</Action>
 	</Task>
 	<Task sr="task35">
@@ -2654,21 +2689,6 @@ All installed and enabled Keyboard Apps' Package Names&lt;/_array_net.dinglisch.
 			<Int sr="arg9" val="1"/>
 		</Action>
 	</Task>
-	<Task sr="task49">
-		<cdate>1790222719818</cdate>
-		<edate>1790223031337</edate>
-		<id>49</id>
-		<nme>Keyboard</nme>
-		<pri>100</pri>
-		<Action sr="act0" ve="7">
-			<code>30</code>
-			<Int sr="arg0" val="0"/>
-			<Int sr="arg1" val="5"/>
-			<Int sr="arg2" val="0"/>
-			<Int sr="arg3" val="0"/>
-			<Int sr="arg4" val="0"/>
-		</Action>
-	</Task>
 	<Task sr="task5">
 		<cdate>1722165457769</cdate>
 		<edate>1722221339275</edate>
@@ -2846,82 +2866,6 @@ All installed and enabled Keyboard Apps' Package Names&lt;/_array_net.dinglisch.
 			<Int sr="arg4" val="0"/>
 			<Int sr="arg5" val="3"/>
 			<Int sr="arg6" val="1"/>
-		</Action>
-	</Task>
-	<Task sr="task57">
-		<cdate>1790223047794</cdate>
-		<edate>1790225729633</edate>
-		<id>57</id>
-		<nme>Hide Keyboard</nme>
-		<pri>100</pri>
-		<Action sr="act0" ve="7">
-			<code>30</code>
-			<Int sr="arg0" val="0"/>
-			<Int sr="arg1" val="5"/>
-			<Int sr="arg2" val="0"/>
-			<Int sr="arg3" val="0"/>
-			<Int sr="arg4" val="0"/>
-		</Action>
-		<Action sr="act1" ve="7">
-			<code>513</code>
-		</Action>
-	</Task>
-	<Task sr="task58">
-		<cdate>1790228923266</cdate>
-		<edate>1790231574535</edate>
-		<id>58</id>
-		<nme>Calctape Hide Calcpad</nme>
-		<pri>100</pri>
-		<Action sr="act0" ve="7">
-			<code>30</code>
-			<Int sr="arg0" val="0"/>
-			<Int sr="arg1" val="5"/>
-			<Int sr="arg2" val="0"/>
-			<Int sr="arg3" val="0"/>
-			<Int sr="arg4" val="0"/>
-		</Action>
-		<Action sr="act1" ve="7">
-			<code>107361459</code>
-			<Bundle sr="arg0">
-				<Vals sr="val">
-					<EnableDisableAccessibilityService>&lt;null&gt;</EnableDisableAccessibilityService>
-					<EnableDisableAccessibilityService-type>java.lang.String</EnableDisableAccessibilityService-type>
-					<Password>&lt;null&gt;</Password>
-					<Password-type>java.lang.String</Password-type>
-					<com.twofortyfouram.locale.intent.extra.BLURB>Actions To Perform: click(id,de.sfr.calctape:id/keyboardAwareEditor)
-Not In AutoInput: true
-Not In Tasker: true
-Separator: ,
-Check Millis: 1000</com.twofortyfouram.locale.intent.extra.BLURB>
-					<com.twofortyfouram.locale.intent.extra.BLURB-type>java.lang.String</com.twofortyfouram.locale.intent.extra.BLURB-type>
-					<net.dinglisch.android.tasker.JSON_ENCODED_KEYS>parameters</net.dinglisch.android.tasker.JSON_ENCODED_KEYS>
-					<net.dinglisch.android.tasker.JSON_ENCODED_KEYS-type>java.lang.String</net.dinglisch.android.tasker.JSON_ENCODED_KEYS-type>
-					<net.dinglisch.android.tasker.RELEVANT_VARIABLES>&lt;StringArray sr=""&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;%ailastbounds
-Last Bounds
-Bounds (left,top,right,bottom) of the item that the action last interacted with&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES1&gt;%ailastcoordinates
-Last Coordinates
-Center coordinates (x,y) of the item that the action last interacted with&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES1&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES2&gt;%err
-Error Code
-Only available if you select &amp;lt;b&amp;gt;Continue Task After Error&amp;lt;/b&amp;gt; and the action ends in error&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES2&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES3&gt;%errmsg
-Error Message
-Only available if you select &amp;lt;b&amp;gt;Continue Task After Error&amp;lt;/b&amp;gt; and the action ends in error&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES3&gt;&lt;/StringArray&gt;</net.dinglisch.android.tasker.RELEVANT_VARIABLES>
-					<net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>[Ljava.lang.String;</net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>
-					<net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS>parameters plugininstanceid plugintypeid </net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS>
-					<net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS-type>java.lang.String</net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS-type>
-					<net.dinglisch.android.tasker.subbundled>true</net.dinglisch.android.tasker.subbundled>
-					<net.dinglisch.android.tasker.subbundled-type>java.lang.Boolean</net.dinglisch.android.tasker.subbundled-type>
-					<parameters>{"_action":"click(id,de.sfr.calctape:id/keyboardAwareEditor)","_additionalOptions":{"checkMs":"1000","separator":",","withCoordinates":false},"_whenToPerformAction":{"notInAutoInput":true,"notInTasker":true},"generatedValues":{}}</parameters>
-					<parameters-type>java.lang.String</parameters-type>
-					<plugininstanceid>6b1c1e20-5147-44bc-92f4-17e33f944f7d</plugininstanceid>
-					<plugininstanceid-type>java.lang.String</plugininstanceid-type>
-					<plugintypeid>com.joaomgcd.autoinput.intent.IntentActionv2</plugintypeid>
-					<plugintypeid-type>java.lang.String</plugintypeid-type>
-				</Vals>
-			</Bundle>
-			<Str sr="arg1" ve="3">com.joaomgcd.autoinput</Str>
-			<Str sr="arg2" ve="3">com.joaomgcd.autoinput.activity.ActivityConfigActionv2</Str>
-			<Int sr="arg3" val="60"/>
-			<Int sr="arg4" val="1"/>
 		</Action>
 	</Task>
 	<Task sr="task59">
