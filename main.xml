@@ -411,6 +411,47 @@ Note 2: In the same Preferences screen you can enable this to work with the scre
 			<code>125</code>
 		</State>
 	</Profile>
+	<Profile sr="prof64" ve="2">
+		<cdate>1790245217702</cdate>
+		<edate>1790254546917</edate>
+		<flags>10</flags>
+		<id>64</id>
+		<limit>true</limit>
+		<mid0>65</mid0>
+		<State sr="con0" ve="2">
+			<code>120</code>
+			<Int sr="arg0" val="4"/>
+		</State>
+		<State sr="con1" ve="2">
+			<code>165</code>
+			<ConditionList sr="if">
+				<Condition sr="c0" ve="3">
+					<lhs>%TorchActivation</lhs>
+					<op>0</op>
+					<rhs>True</rhs>
+				</Condition>
+			</ConditionList>
+		</State>
+	</Profile>
+	<Profile sr="prof67" ve="2">
+		<cdate>1722177029994</cdate>
+		<edate>1790254547425</edate>
+		<flags>10</flags>
+		<id>67</id>
+		<limit>true</limit>
+		<mid0>7</mid0>
+		<mid1>9</mid1>
+		<nme>Enable TorchActivation</nme>
+		<State sr="con0" ve="2">
+			<code>103</code>
+			<Int sr="arg0" val="0"/>
+			<Int sr="arg1" val="6"/>
+		</State>
+		<State sr="con1" ve="2">
+			<code>125</code>
+			<pin>true</pin>
+		</State>
+	</Profile>
 	<Profile sr="prof68" ve="2">
 		<cdate>1731567605049</cdate>
 		<edate>1735258176601</edate>
@@ -699,11 +740,11 @@ Note 2: In the same Preferences screen you can enable this to work with the scre
 	<Project sr="proj3" ve="2">
 		<cdate>1611484322723</cdate>
 		<id>90670737-b49b-4a78-bfcc-0b70734dde44</id>
-		<mdate>1773558067233</mdate>
+		<mdate>1790245717906</mdate>
 		<name>Torch Scene</name>
-		<pids>8,46</pids>
+		<pids>8,46,64,67</pids>
 		<scenes>Bubble Scene</scenes>
-		<tids>398,7,9</tids>
+		<tids>398,7,9,65,66</tids>
 		<Share sr="Share">
 			<b>false</b>
 			<d>Bubble Scene</d>
@@ -739,7 +780,7 @@ Note 2: In the same Preferences screen you can enable this to work with the scre
 	</Project>
 	<Scene sr="sceneBubble Scene">
 		<cdate>1518262423058</cdate>
-		<edate>1774500663343</edate>
+		<edate>1790237395409</edate>
 		<heightLand>172</heightLand>
 		<heightPort>172</heightPort>
 		<nme>Bubble Scene</nme>
@@ -2210,7 +2251,7 @@ Time in milliseconds that it took for Tasker to get the location&lt;/_array_net.
 	</Task>
 	<Task sr="task398">
 		<cdate>1518302519654</cdate>
-		<edate>1790172944716</edate>
+		<edate>1790237385813</edate>
 		<id>398</id>
 		<nme>Torch Bubble Scene</nme>
 		<pri>100</pri>
@@ -2852,13 +2893,14 @@ Only available if you select &amp;lt;b&amp;gt;Continue Task After Error&amp;lt;/
 	</Task>
 	<Task sr="task6">
 		<cdate>1722166986022</cdate>
-		<edate>1790162300085</edate>
+		<edate>1790246726655</edate>
 		<id>6</id>
 		<nme>Tap Tap</nme>
 		<pri>6</pri>
 		<Action sr="act0" ve="7">
 			<code>37</code>
 			<coll>false</coll>
+			<on>false</on>
 			<ConditionList sr="if">
 				<Condition sr="c0" ve="3">
 					<lhs>%TorchActivation</lhs>
@@ -2926,6 +2968,7 @@ Only available if you select &amp;lt;b&amp;gt;Continue Task After Error&amp;lt;/
 		</Action>
 		<Action sr="act2" ve="7">
 			<code>511</code>
+			<on>false</on>
 			<Int sr="arg0" val="2"/>
 			<Str sr="arg1" ve="3"/>
 		</Action>
@@ -3021,6 +3064,43 @@ Only available if you select &amp;lt;b&amp;gt;Continue Task After Error&amp;lt;/
 			<pvv>False</pvv>
 			<strout>true</strout>
 		</ProfileVariable>
+	</Task>
+	<Task sr="task65">
+		<cdate>1790245236424</cdate>
+		<edate>1790245396913</edate>
+		<id>65</id>
+		<nme>Toggle Torch</nme>
+		<Action sr="act0" ve="7">
+			<code>511</code>
+			<Int sr="arg0" val="2"/>
+			<Str sr="arg1" ve="3"/>
+		</Action>
+	</Task>
+	<Task sr="task66">
+		<cdate>1722176982620</cdate>
+		<edate>1790247729783</edate>
+		<id>66</id>
+		<nme>Enable TorchActivation</nme>
+		<pri>100</pri>
+		<Action sr="act0" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%TorchActivation</Str>
+			<Str sr="arg1" ve="3">True</Str>
+			<Int sr="arg2" val="0"/>
+			<Int sr="arg3" val="0"/>
+			<Int sr="arg4" val="0"/>
+			<Int sr="arg5" val="3"/>
+			<Int sr="arg6" val="1"/>
+		</Action>
+		<Action sr="act1" ve="7">
+			<code>192</code>
+			<Int sr="arg0" val="1"/>
+			<Str sr="arg1" ve="3">Xylitol</Str>
+			<Int sr="arg2" val="5"/>
+		</Action>
+		<Img sr="icn" ve="2">
+			<nme>mw_editor_highlight</nme>
+		</Img>
 	</Task>
 	<Task sr="task69">
 		<cdate>1731989167651</cdate>
@@ -3126,7 +3206,7 @@ Only available if you select &amp;lt;b&amp;gt;Continue Task After Error&amp;lt;/
 		<edate>1790215717000</edate>
 		<id>696</id>
 		<nme>Check The Chairman Reservations</nme>
-		<pri>100</pri>
+		<pri>6</pri>
 		<Action sr="act0" ve="7">
 			<code>339</code>
 			<se>false</se>
@@ -3194,7 +3274,7 @@ if (response_code === "200" &amp;&amp; /&lt;section[^&gt;]+id=["']booking["']/i.
 	</Task>
 	<Task sr="task697">
 		<cdate>1790220190087</cdate>
-		<edate>1790220190087</edate>
+		<edate>1790236290610</edate>
 		<id>697</id>
 		<nme>Hong Kong Countdown</nme>
 		<pri>6</pri>
@@ -3347,7 +3427,7 @@ var widget_layout = (function () {
 	</Task>
 	<Task sr="task7">
 		<cdate>1722176982620</cdate>
-		<edate>1790173160782</edate>
+		<edate>1790245535613</edate>
 		<id>7</id>
 		<nme>Torch Activation</nme>
 		<pri>100</pri>
@@ -3833,7 +3913,7 @@ Only available if you select &amp;lt;b&amp;gt;Continue Task After Error&amp;lt;/
 	</Task>
 	<Task sr="task9">
 		<cdate>1722177470040</cdate>
-		<edate>1727251790484</edate>
+		<edate>1790246989488</edate>
 		<id>9</id>
 		<nme>Torch Deactivation</nme>
 		<pri>100</pri>
