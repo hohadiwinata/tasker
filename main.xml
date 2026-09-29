@@ -2912,6 +2912,40 @@ All installed and enabled Keyboard Apps' Package Names&lt;/_array_net.dinglisch.
 			<Int sr="arg6" val="1"/>
 		</Action>
 	</Task>
+	<Task sr="task57">
+		<cdate>1790385858344</cdate>
+		<edate>1790385997590</edate>
+		<id>57</id>
+		<nme>Morse</nme>
+		<pri>100</pri>
+		<Action sr="act0" ve="7">
+			<code>172</code>
+			<Str sr="arg0" ve="3">BT</Str>
+			<Int sr="arg1" val="4000"/>
+			<Int sr="arg2" val="80"/>
+			<Int sr="arg3" val="50"/>
+			<Int sr="arg4" val="3"/>
+		</Action>
+	</Task>
+	<Task sr="task58">
+		<cdate>1790386119112</cdate>
+		<edate>1790386176092</edate>
+		<id>58</id>
+		<nme>Google Drive Sign In</nme>
+		<Action sr="act0" ve="7">
+			<code>327</code>
+			<Bundle sr="arg0">
+				<Vals sr="val">
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES>&lt;StringArray sr=""&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;%gd_account
+Account
+Account that was signed in to Google Drive&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;&lt;/StringArray&gt;</net.dinglisch.android.tasker.RELEVANT_VARIABLES>
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>[Ljava.lang.String;</net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>
+				</Vals>
+			</Bundle>
+			<Str sr="arg1" ve="3"/>
+			<Int sr="arg2" val="0"/>
+		</Action>
+	</Task>
 	<Task sr="task59">
 		<cdate>1790231590157</cdate>
 		<edate>1790232424146</edate>
@@ -3144,6 +3178,131 @@ Only available if you select &amp;lt;b&amp;gt;Continue Task After Error&amp;lt;/
 			<pvv>False</pvv>
 			<strout>true</strout>
 		</ProfileVariable>
+	</Task>
+	<Task sr="task61">
+		<cdate>1790575530615</cdate>
+		<edate>1790584155560</edate>
+		<id>61</id>
+		<nme>Steps</nme>
+		<pri>100</pri>
+		<Action sr="act0" ve="7">
+			<code>1187787926</code>
+			<Bundle sr="arg0">
+				<Vals sr="val">
+					<com.twofortyfouram.locale.intent.extra.BLURB>End Timestamp: 1790576361463
+Class of the type of Health Record: StepsRecord
+Start Timestamp: 1790489000000</com.twofortyfouram.locale.intent.extra.BLURB>
+					<com.twofortyfouram.locale.intent.extra.BLURB-type>java.lang.String</com.twofortyfouram.locale.intent.extra.BLURB-type>
+					<endTime>1790576361463</endTime>
+					<endTime-type>java.lang.String</endTime-type>
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES>&lt;StringArray sr=""&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;%healthconnectresult
+Read Data
+Data will be returned as a JSON object, see HealthConnectClient.readRecords API for the response format.&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES1&gt;%err
+Error Code
+If there's an error, contains an error code&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES1&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES2&gt;%errmsg
+Error Message
+If there's an error, contains an error message&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES2&gt;&lt;/StringArray&gt;</net.dinglisch.android.tasker.RELEVANT_VARIABLES>
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>[Ljava.lang.String;</net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>
+					<net.dinglisch.android.tasker.extras.ACTION_INPUT_CLASS>com.rafapps.taskerhealthconnect.read.ReadDataInput</net.dinglisch.android.tasker.extras.ACTION_INPUT_CLASS>
+					<net.dinglisch.android.tasker.extras.ACTION_INPUT_CLASS-type>java.lang.String</net.dinglisch.android.tasker.extras.ACTION_INPUT_CLASS-type>
+					<net.dinglisch.android.tasker.extras.ACTION_RUNNER_CLASS>com.rafapps.taskerhealthconnect.read.ReadDataActionRunner</net.dinglisch.android.tasker.extras.ACTION_RUNNER_CLASS>
+					<net.dinglisch.android.tasker.extras.ACTION_RUNNER_CLASS-type>java.lang.String</net.dinglisch.android.tasker.extras.ACTION_RUNNER_CLASS-type>
+					<net.dinglisch.android.tasker.extras.EXTRA_WAS_CONFIGURED_BEFORE>true</net.dinglisch.android.tasker.extras.EXTRA_WAS_CONFIGURED_BEFORE>
+					<net.dinglisch.android.tasker.extras.EXTRA_WAS_CONFIGURED_BEFORE-type>java.lang.Boolean</net.dinglisch.android.tasker.extras.EXTRA_WAS_CONFIGURED_BEFORE-type>
+					<net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS>endTime recordType startTime</net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS>
+					<net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS-type>java.lang.String</net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS-type>
+					<net.dinglisch.android.tasker.subbundled>true</net.dinglisch.android.tasker.subbundled>
+					<net.dinglisch.android.tasker.subbundled-type>java.lang.Boolean</net.dinglisch.android.tasker.subbundled-type>
+					<recordType>StepsRecord</recordType>
+					<recordType-type>java.lang.String</recordType-type>
+					<startTime>1790489000000</startTime>
+					<startTime-type>java.lang.String</startTime-type>
+				</Vals>
+			</Bundle>
+			<Str sr="arg1" ve="3">com.rafapps.taskerhealthconnect</Str>
+			<Str sr="arg2" ve="3">com.rafapps.taskerhealthconnect.read.ReadDataActivity</Str>
+			<Int sr="arg3" val="60"/>
+			<Int sr="arg4" val="1"/>
+		</Action>
+		<Action sr="act1" ve="7">
+			<code>548</code>
+			<Str sr="arg0" ve="3">%healthconnectresult</Str>
+			<Int sr="arg1" val="0"/>
+			<Str sr="arg10" ve="3"/>
+			<Int sr="arg11" val="1"/>
+			<Int sr="arg12" val="0"/>
+			<Str sr="arg13" ve="3"/>
+			<Int sr="arg14" val="0"/>
+			<Str sr="arg15" ve="3"/>
+			<Int sr="arg2" val="0"/>
+			<Str sr="arg3" ve="3"/>
+			<Str sr="arg4" ve="3"/>
+			<Str sr="arg5" ve="3"/>
+			<Str sr="arg6" ve="3"/>
+			<Str sr="arg7" ve="3"/>
+			<Str sr="arg8" ve="3"/>
+			<Int sr="arg9" val="1"/>
+		</Action>
+	</Task>
+	<Task sr="task63">
+		<cdate>1790655777447</cdate>
+		<edate>1790672473947</edate>
+		<id>63</id>
+		<nme>Termux</nme>
+		<pri>100</pri>
+		<Action sr="act0" ve="7">
+			<code>1256900802</code>
+			<Bundle sr="arg0">
+				<Vals sr="val">
+					<com.termux.execute.arguments>&lt;null&gt;</com.termux.execute.arguments>
+					<com.termux.execute.arguments-type>java.lang.String</com.termux.execute.arguments-type>
+					<com.termux.tasker.extra.BACKGROUND_CUSTOM_LOG_LEVEL>&lt;null&gt;</com.termux.tasker.extra.BACKGROUND_CUSTOM_LOG_LEVEL>
+					<com.termux.tasker.extra.BACKGROUND_CUSTOM_LOG_LEVEL-type>java.lang.String</com.termux.tasker.extra.BACKGROUND_CUSTOM_LOG_LEVEL-type>
+					<com.termux.tasker.extra.EXECUTABLE>toto_tasker.py</com.termux.tasker.extra.EXECUTABLE>
+					<com.termux.tasker.extra.EXECUTABLE-type>java.lang.String</com.termux.tasker.extra.EXECUTABLE-type>
+					<com.termux.tasker.extra.SESSION_ACTION>&lt;null&gt;</com.termux.tasker.extra.SESSION_ACTION>
+					<com.termux.tasker.extra.SESSION_ACTION-type>java.lang.String</com.termux.tasker.extra.SESSION_ACTION-type>
+					<com.termux.tasker.extra.STDIN>&lt;null&gt;</com.termux.tasker.extra.STDIN>
+					<com.termux.tasker.extra.STDIN-type>java.lang.String</com.termux.tasker.extra.STDIN-type>
+					<com.termux.tasker.extra.TERMINAL>false</com.termux.tasker.extra.TERMINAL>
+					<com.termux.tasker.extra.TERMINAL-type>java.lang.Boolean</com.termux.tasker.extra.TERMINAL-type>
+					<com.termux.tasker.extra.VERSION_CODE>1002</com.termux.tasker.extra.VERSION_CODE>
+					<com.termux.tasker.extra.VERSION_CODE-type>java.lang.Integer</com.termux.tasker.extra.VERSION_CODE-type>
+					<com.termux.tasker.extra.WAIT_FOR_RESULT>true</com.termux.tasker.extra.WAIT_FOR_RESULT>
+					<com.termux.tasker.extra.WAIT_FOR_RESULT-type>java.lang.Boolean</com.termux.tasker.extra.WAIT_FOR_RESULT-type>
+					<com.termux.tasker.extra.WORKDIR>&lt;null&gt;</com.termux.tasker.extra.WORKDIR>
+					<com.termux.tasker.extra.WORKDIR-type>java.lang.String</com.termux.tasker.extra.WORKDIR-type>
+					<com.twofortyfouram.locale.intent.extra.BLURB>toto_tasker.py
+
+Working Directory ✕
+Stdin ✕
+Custom Log Level null
+Terminal Session ✕
+Wait For Result ✓</com.twofortyfouram.locale.intent.extra.BLURB>
+					<com.twofortyfouram.locale.intent.extra.BLURB-type>java.lang.String</com.twofortyfouram.locale.intent.extra.BLURB-type>
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES>&lt;StringArray sr=""&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;%stdout
+Standard Output
+The &amp;lt;B&amp;gt;stdout&amp;lt;/B&amp;gt; of the command.&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES1&gt;%stdout_original_length
+Standard Output Original Length
+The original length of &amp;lt;B&amp;gt;stdout&amp;lt;/B&amp;gt;.&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES1&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES2&gt;%stderr
+Standard Error
+The &amp;lt;B&amp;gt;stderr&amp;lt;/B&amp;gt; of the command.&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES2&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES3&gt;%stderr_original_length
+Standard Error Original Length
+The original length of &amp;lt;B&amp;gt;stderr&amp;lt;/B&amp;gt;.&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES3&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES4&gt;%result
+Exit Code
+The &amp;lt;B&amp;gt;exit code&amp;lt;/B&amp;gt; of the command.0 often means success and anything else is usually a failure of some sort.&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES4&gt;&lt;/StringArray&gt;</net.dinglisch.android.tasker.RELEVANT_VARIABLES>
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>[Ljava.lang.String;</net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>
+					<net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS>com.termux.tasker.extra.EXECUTABLE com.termux.execute.arguments com.termux.tasker.extra.WORKDIR com.termux.tasker.extra.STDIN com.termux.tasker.extra.SESSION_ACTION com.termux.tasker.extra.BACKGROUND_CUSTOM_LOG_LEVEL</net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS>
+					<net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS-type>java.lang.String</net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS-type>
+					<net.dinglisch.android.tasker.subbundled>true</net.dinglisch.android.tasker.subbundled>
+					<net.dinglisch.android.tasker.subbundled-type>java.lang.Boolean</net.dinglisch.android.tasker.subbundled-type>
+				</Vals>
+			</Bundle>
+			<Str sr="arg1" ve="3">com.termux.tasker</Str>
+			<Str sr="arg2" ve="3">com.termux.tasker.EditConfigurationActivity</Str>
+			<Int sr="arg3" val="10"/>
+			<Int sr="arg4" val="1"/>
+		</Action>
 	</Task>
 	<Task sr="task65">
 		<cdate>1790245236424</cdate>
