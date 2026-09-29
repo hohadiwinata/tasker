@@ -29,7 +29,7 @@ var widget_layout = (function () {
             type: "Box", fillMaxWidth: true, height: 190 * scale,
             children: [
                 { type: "Image", url: "file:///storage/emulated/0/Tasker/hong-kong-boarding-pass.png",
-                    fillMaxSize: true, contentScale: "FillBounds" },
+                    fillMaxSize: true, contentScale: "Fit" },
                 { type: "Column", fillMaxSize: true, horizontalAlignment: "Center", children: [
                     { type: "Spacer", height: 66 * scale },
                     { type: "Box", fillMaxWidth: true, height: 48 * scale,
