@@ -3316,117 +3316,40 @@ if (response_code === "200" &amp;&amp; /&lt;section[^&gt;]+id=["']booking["']/i.
 		<pri>6</pri>
 		<Action sr="act0" ve="7">
 			<code>129</code>
-			<Str sr="arg0" ve="3">// Boarding-pass layout for the 1 x 2 "Countdown" Widget v2.
-// The following Widget v2 action uses %widget_layout as its Custom Layout.
+			<Str sr="arg0" ve="3">// Copy output/hong-kong-boarding-pass.png to /sdcard/Tasker/ first.
+// The card fills the widget width, leaving an 8 dp margin on each side.
+// Scale controls card height and live text size independently of width.
 var widget_layout = (function () {
+    var scale = 1;
     var hongKongNow = new Date(Date.now() + 8 * 60 * 60 * 1000);
-    var today = Date.UTC(
-        hongKongNow.getUTCFullYear(),
-        hongKongNow.getUTCMonth(),
-        hongKongNow.getUTCDate()
-    );
-    var departure = Date.UTC(2026, 10, 22);
-    var days = Math.round((departure - today) / (24 * 60 * 60 * 1000));
-
+    var today = Date.UTC(hongKongNow.getUTCFullYear(), hongKongNow.getUTCMonth(), hongKongNow.getUTCDate());
+    var days = Math.round((Date.UTC(2026, 10, 22) - today) / 86400000);
     var number = days &gt; 0 ? String(days) : days === 0 ? "TODAY" : "✈";
-    var caption = days &gt; 1 ? "DAYS TO GO" : days === 1 ? "DAY TO GO" :
-        days === 0 ? "LET'S GO" : "ARRIVED";
-
+    var caption = days &gt; 1 ? "DAYS TO GO" : days === 1 ? "DAY TO GO" : days === 0 ? "LET'S GO" : "ARRIVED";
+    function text(value, size, color) {
+        return { type: "Text", text: value, textSize: size * scale, color: color,
+            bold: true, maxLines: 1, align: "Center", fontFamily: "SansSerif" };
+    }
     return JSON.stringify({
-        type: "Column",
-        fillMaxSize: true,
-        padding: 4,
-        cornerRadius: 18,
-        backgroundColor: "#102D38",
-        useMaterialYouColors: false,
-        horizontalAlignment: "Center",
-        verticalAlignment: "Center",
-        task: "Hong Kong Countdown",
-        children: [
-            {
-                type: "Text",
-                text: "✈ BOARDING",
-                color: "#FFC886",
-                textSize: 8,
-                bold: true,
-                maxLines: 1
-            },
-            { type: "Spacer", isWeighted: true },
-            {
-                type: "Column",
-                horizontalAlignment: "Center",
-                children: [
-                    {
-                        type: "Text",
-                        text: "HKG",
-                        color: "#FFFFFF",
-                        textSize: 28,
-                        bold: true,
-                        maxLines: 1
-                    },
-                    {
-                        type: "Text",
-                        text: "HONG KONG",
-                        color: "#9FC3C8",
-                        textSize: 8,
-                        bold: true,
-                        maxLines: 1
-                    }
-                ]
-            },
-            { type: "Spacer", isWeighted: true },
-            {
-                type: "Column",
-                horizontalAlignment: "Center",
-                children: [
-                    {
-                        type: "Text",
-                        text: number,
-                        color: "#FFC886",
-                        textSize: days &gt; 0 ? (days &gt;= 100 ? 34 : 48) : 18,
-                        bold: true,
-                        maxLines: 1
-                    },
-                    {
-                        type: "Text",
-                        text: caption,
-                        color: "#FFFFFF",
-                        textSize: 8,
-                        bold: true,
-                        maxLines: 1
-                    }
-                ]
-            },
-            { type: "Spacer", isWeighted: true },
-            {
-                type: "Box",
-                fillMaxWidth: true,
-                height: 1,
-                backgroundColor: "#80B6C1"
-            },
-            {
-                type: "Column",
-                horizontalAlignment: "Center",
-                paddingTop: 4,
-                children: [
-                    {
-                        type: "Text",
-                        text: "DEPARTURE",
-                        color: "#9FC3C8",
-                        textSize: 8,
-                        maxLines: 1
-                    },
-                    {
-                        type: "Text",
-                        text: "22 NOV 26",
-                        color: "#FFFFFF",
-                        textSize: 11,
-                        bold: true,
-                        maxLines: 1
-                    }
-                ]
-            }
-        ]
+        type: "Box", fillMaxSize: true, useMaterialYouColors: false,
+        paddingStart: 8, paddingEnd: 8,
+        horizontalAlignment: "Center", verticalAlignment: "Center", task: "Hong Kong Countdown",
+        children: [{
+            type: "Box", fillMaxWidth: true, height: 190 * scale,
+            children: [
+                { type: "Image", url: "file:///storage/emulated/0/Tasker/hong-kong-boarding-pass.png",
+                    fillMaxSize: true, contentScale: "FillBounds" },
+                { type: "Column", fillMaxSize: true, horizontalAlignment: "Center", children: [
+                    { type: "Spacer", height: 66 * scale },
+                    { type: "Box", fillMaxWidth: true, height: 48 * scale,
+                        horizontalAlignment: "Center", verticalAlignment: "Center",
+                        children: [text(number, days &gt; 0 ? (days &gt;= 100 ? 34 : 42) : 20, "#FFC47B")] },
+                    { type: "Box", fillMaxWidth: true, height: 13 * scale,
+                        horizontalAlignment: "Center", verticalAlignment: "Center",
+                        children: [text(caption, 7, "#FFFFFF")] }
+                ] }
+            ]
+        }]
     });
 })();</Str>
 			<Str sr="arg1" ve="3"/>
