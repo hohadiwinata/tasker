@@ -241,9 +241,10 @@ The intent category that opened the secondary app. Can be empty.&lt;/_array_net.
 	</Profile>
 	<Profile sr="prof32" ve="2">
 		<cdate>1723430534122</cdate>
-		<edate>1741492870537</edate>
+		<edate>1790569626529</edate>
 		<flags>10</flags>
 		<id>32</id>
+		<limit>true</limit>
 		<mid0>42</mid0>
 		<nme>Gshock Move Sync</nme>
 		<Share sr="Share">
@@ -2518,16 +2519,16 @@ Time in milliseconds that it took for Tasker to get the location&lt;/_array_net.
 	</Task>
 	<Task sr="task42">
 		<cdate>1731974335687</cdate>
-		<edate>1790160671852</edate>
+		<edate>1790655445348</edate>
 		<id>42</id>
 		<nme>Gshock Move App</nme>
 		<pri>6</pri>
 		<Action sr="act0" ve="7">
 			<code>20</code>
 			<App sr="arg0">
-				<appClass>com.casio.gshockmove.MainActivity</appClass>
-				<appPkg>com.casio.gshockmove</appPkg>
-				<label>MOVE</label>
+				<appClass>com.casio.wac_app.MainActivityDefault</appClass>
+				<appPkg>com.casio.wac_app</appPkg>
+				<label>CASIO WATCHES</label>
 			</App>
 			<Str sr="arg1" ve="3"/>
 			<Int sr="arg2" val="0"/>
