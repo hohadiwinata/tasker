@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hong Kong ticket preview</title>
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; display: grid; place-content: center; gap: 12px; background: #e8eef0; font-family: Arial, sans-serif; }
+.widget { width: 400px; height: 800px; position: relative; }
+.widget img { position: absolute; width: 100%; height: 100%; }
+.live { position: absolute; inset: 0; display: grid; grid-template-rows: repeat(3,minmax(0,1fr)); text-align: center; font-weight: bold; }
+.number { display: grid; place-content: center; font-size: 184px; color: #ffc47b; line-height: 1.16; }
+.caption { color: white; font-size: 32px; line-height: 1.2; }
+p { max-width: 400px; text-align: center; color: #365761; font-size: 13px; }
+@media (max-width: 420px) { body { zoom: .8; } }
+</style>
+<main class="widget" aria-label="Hong Kong departure countdown">
+<img src="hong-kong-boarding-pass.png" alt="Boarding ticket to Hong Kong, departing 22 November 2026">
+<div class="live"><div></div><div class="number" id="number"></div><div class="caption" id="caption"></div></div>
+</main>
+<p>Enlarged 100 × 200 dp preview. Ticket bounds occupy 84.6% of the available area. Native Android font spacing may differ.</p>
+<script>
+function refresh() {
+ const hk = new Date(Date.now() + 8 * 3600000);
+ const today = Date.UTC(hk.getUTCFullYear(), hk.getUTCMonth(), hk.getUTCDate());
+ const days = Math.round((Date.UTC(2026, 10, 22) - today) / 86400000);
+ const number = document.getElementById('number');
+ number.textContent = days > 0 ? String(days) : days === 0 ? 'TODAY' : '✈';
+ number.style.fontSize = (days > 0 ? days >= 100 ? 136 : 184 : 80) + 'px';
+ document.getElementById('caption').textContent = days > 1 ? 'DAYS TO GO' : days === 1 ? 'DAY TO GO' : days === 0 ? "LET'S GO" : 'ARRIVED';
+}
+refresh(); setInterval(refresh, 60000);
+</script>
+</html>
