@@ -1,0 +1,13 @@
+diff --git a/server.mjs b/server.mjs
+index 81643f2..d47bb27 100755
+--- a/server.mjs
++++ b/server.mjs
+@@ -300,7 +300,7 @@ const tools = {
+     handler: async ({ url }) => {
+       // Rung 1: static fetch. No browser spawned, no LMK risk, milliseconds.
+       const attempt = await staticFetch(url, { timeout: Math.min(cfg.navTimeout, 15000) });
+-      if (attempt.mode === "static") {
++      if (attempt.mode === "static" && process.env.BWB_FORCE_BROWSER !== "true") {
+         syncActiveTab(attempt.title, attempt.finalUrl);
+         return { content: [{ type: "text", text: JSON.stringify({
+           mode: "static", title: attempt.title, url: attempt.finalUrl,
