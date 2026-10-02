@@ -1,3 +1,5 @@
 *.txt
 
 MapTasker_Timeline/
+.local-test/
+__pycache__/
