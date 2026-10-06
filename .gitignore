@@ -3,3 +3,5 @@
 MapTasker_Timeline/
 .local-test/
 __pycache__/
+MapTasker.html
+MapTasker_Settings.toml
