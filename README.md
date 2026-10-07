@@ -1,3 +1,21 @@
+# Termux Toto result to Mama on WhatsApp
+
+**Test → Termux Toto Result** now snapshots images in **Internal storage/Pictures/Toto**, runs the existing `toto_tasker.py` with **Wait For Result** enabled and a **300-second timeout**, then shares the single new or updated PNG/JPG/JPEG/WebP to Mama. Mama's number (ending **3886**) was looked up in Google Contacts and is embedded as the WhatsApp recipient in the task. No caption is added.
+
+Copy [Termux Toto Result.tsk.xml](Termux%20Toto%20Result.tsk.xml) to your phone. If a task with that name already exists, rename it to **Termux Toto Result old** first; if it is completely empty, you can delete that empty task instead. While **Test** is selected, long-press Tasker's **Tasks** tab, choose **Import Task**, and select the new XML copy. Open the imported task and confirm it has **10 actions**, starting with **Remember existing Toto images**. If profiles or shortcuts referred to the renamed task, point them to the newly imported task. This standalone import avoids restoring the entire backup. The same change is included in [main.xml](main.xml).
+
+If an earlier copy imported as an empty task, replace the downloaded XML on the phone before importing again. The regenerated export uses native `sr`-then-`ve` action attribute ordering and a task reference matching its ID. Host-side checks validate those details and all ten actions; phone import still needs verification.
+
+Tasker needs access to Pictures/Toto; keep Termux's existing storage permissions and script setup. The generator must finish writing the image before it exits and return exit code `0`. No changes to the Termux script are required. If it exits without changing an image, produces several images, fails, or leaves an empty/changing file, the task stops without sending an attachment. The folder is checked again after one second to catch files still being written.
+
+The sharing steps first run Tasker's `FilePathToContentUri(%toto_image)`, then Java Code opens WhatsApp from a temporary Tasker activity with the resulting content URI, ClipData, and temporary read permission. This replaces the previous file-URI Send Intent attempt. Launch exceptions stop the task before AutoInput. Android returning from the launch call does not prove the preview was displayed or the image delivered. See [Android file sharing guidance](https://developer.android.com/training/secure-file-sharing/share-file).
+
+The phone must be **on and unlocked**, WhatsApp signed in, and **AutoInput's accessibility service enabled**. The final AutoInput Actions v2 action waits up to 30 seconds for WhatsApp with **Mama** visible, then clicks `com.whatsapp:id/send`. Keep Mama saved under that name on the phone. This uses a WhatsApp sharing intent and UI automation; app updates can change the recipient extra, preview, or button ID. If the guard times out, the task fails instead of clicking elsewhere.
+
+**On-device check:** import [Termux Toto Content Preview.tsk.xml](Termux%20Toto%20Content%20Preview.tsk.xml), which has AutoInput disabled and a distinct task name. Run it and verify that WhatsApp previews the correct image for Mama. Once the preview is correct, cancel it and import the updated main task to test automatic sending. If necessary, use AutoInput's Easy Setup on the image preview to update the Send button ID or recipient text. Local validation cannot confirm WhatsApp delivery. Nothing was sent from this computer.
+
+The JavaScript is embedded in the exports: edit `toto-files.js`, `toto-before.js`, or `toto-after.js`, or `toto-share.java`, then run `python build-toto.py`. Run `node test-toto.js` for file-selection and failure-path checks. Source references: [Termux:Tasker completion/results](https://github.com/termux/termux-tasker), [Tasker JavaScript functions](https://tasker.joaoapps.com/userguide/en/javascript.html), and [AutoInput Actions v2](https://joaoapps.com/autoinput-actions-v2-single-action-total-ui-automation/).
+
 # Singapore morning haze notification
 
 [main.xml](main.xml) includes **Singapore Haze Morning** and its **Singapore Haze** task in **Base**. The enabled profile runs every day at **06:55 in the phone's time zone**. Keep your phone set to **Asia/Singapore (GMT+8)** for 6:55 AM Singapore time.

@@ -3374,6 +3374,77 @@ If there's an error, contains an error message&lt;/_array_net.dinglisch.android.
 		<nme>Termux Toto Result</nme>
 		<pri>100</pri>
 		<Action sr="act0" ve="7">
+			<code>129</code>
+			<label>Remember existing Toto images</label>
+			<Str sr="arg0" ve="3">// Shared by the two embedded Tasker JavaScriptlets. No root required.
+function totoSnapshot(allowMissing) {
+    var command = "d=/storage/emulated/0/Pictures/Toto; " +
+        "if [ ! -e \"$d\" ]; then " + (allowMissing ? "echo TOTO_OK; exit 0; " : "exit 1; ") + "fi; " +
+        "[ -d \"$d\" ] &amp;&amp; [ -r \"$d\" ] &amp;&amp; [ -x \"$d\" ] || exit 1; " +
+        "for f in \"$d\"/*; do [ -f \"$f\" ] || continue; " +
+        "case \"$f\" in *.[pP][nN][gG]|*.[jJ][pP][gG]|*.[jJ][pP][eE][gG]|*.[wW][eE][bB][pP]) " +
+        "stat -c '%s|%y|%n' \"$f\" || exit 1;; esac; done; echo TOTO_OK";
+    var output = shell(command, false, 20);
+    if (typeof output !== "string" || !/TOTO_OK\s*$/.test(output)) {
+        throw new Error("Cannot read Pictures/Toto. Check Tasker file access.");
+    }
+    var files = {};
+    output.replace(/TOTO_OK\s*$/, "").split("\n").forEach(function (line) {
+        if (!line) return;
+        var match = /^(\d+)\|([^|]+)\|(\/storage\/emulated\/0\/Pictures\/Toto\/[^\r\n]+)$/.exec(line);
+        if (!match) throw new Error("Unsupported image filename or file metadata.");
+        files[match[3]] = {size: Number(match[1]), stamp: match[1] + "|" + match[2]};
+    });
+    return files;
+}
+
+function totoSelect(before, after, stable) {
+    var changed = Object.keys(after).filter(function (path) {
+        return !before[path] || before[path].stamp !== after[path].stamp;
+    });
+    if (changed.length !== 1) {
+        throw new Error(changed.length ? "Several images changed; cannot choose the result safely." :
+            "No new or updated result image. Nothing sent.");
+    }
+    var path = changed[0];
+    var finalChanged = Object.keys(stable).filter(function (name) {
+        return !before[name] || before[name].stamp !== stable[name].stamp;
+    });
+    if (finalChanged.length !== 1 || finalChanged[0] !== path) {
+        throw new Error("Image selection changed while checking. Nothing sent.");
+    }
+    if (!after[path].size || !stable[path] || stable[path].stamp !== after[path].stamp) {
+        throw new Error("Result image is empty or still being written. Nothing sent.");
+    }
+    return path;
+}
+
+var toto_before = "";
+var toto_ready = "false";
+var toto_error = "";
+try {
+    toto_before = JSON.stringify(totoSnapshot(true));
+    toto_ready = "true";
+} catch (error) {
+    toto_error = String(error.message || error);
+    flashLong("Toto: " + toto_error);
+}
+</Str>
+			<Str sr="arg1" ve="3" />
+			<Int sr="arg2" val="1" />
+			<Int sr="arg3" val="60" />
+		</Action>
+		<Action sr="act1" ve="7">
+			<code>37</code>
+			<ConditionList sr="if">
+				<Condition sr="c0" ve="3">
+					<lhs>%toto_ready</lhs>
+					<op>0</op>
+					<rhs>true</rhs>
+				</Condition>
+			</ConditionList>
+		</Action>
+		<Action sr="act2" ve="7">
 			<code>1256900802</code>
 			<Bundle sr="arg0">
 				<Vals sr="val">
@@ -3385,7 +3456,7 @@ If there's an error, contains an error message&lt;/_array_net.dinglisch.android.
 					<com.termux.tasker.extra.EXECUTABLE-type>java.lang.String</com.termux.tasker.extra.EXECUTABLE-type>
 					<com.termux.tasker.extra.SESSION_ACTION>&lt;null&gt;</com.termux.tasker.extra.SESSION_ACTION>
 					<com.termux.tasker.extra.SESSION_ACTION-type>java.lang.String</com.termux.tasker.extra.SESSION_ACTION-type>
-					<com.termux.tasker.extra.STDIN></com.termux.tasker.extra.STDIN>
+					<com.termux.tasker.extra.STDIN />
 					<com.termux.tasker.extra.STDIN-type>java.lang.String</com.termux.tasker.extra.STDIN-type>
 					<com.termux.tasker.extra.TERMINAL>false</com.termux.tasker.extra.TERMINAL>
 					<com.termux.tasker.extra.TERMINAL-type>java.lang.Boolean</com.termux.tasker.extra.TERMINAL-type>
@@ -3423,8 +3494,191 @@ The &amp;lt;B&amp;gt;exit code&amp;lt;/B&amp;gt; of the command.0 often means su
 			</Bundle>
 			<Str sr="arg1" ve="3">com.termux.tasker</Str>
 			<Str sr="arg2" ve="3">com.termux.tasker.EditConfigurationActivity</Str>
-			<Int sr="arg3" val="10"/>
-			<Int sr="arg4" val="1"/>
+			<Int sr="arg3" val="300" />
+			<Int sr="arg4" val="1" />
+		</Action>
+		<Action sr="act3" ve="7">
+			<code>129</code>
+			<label>Validate fresh result image</label>
+			<Str sr="arg0" ve="3">// Shared by the two embedded Tasker JavaScriptlets. No root required.
+function totoSnapshot(allowMissing) {
+    var command = "d=/storage/emulated/0/Pictures/Toto; " +
+        "if [ ! -e \"$d\" ]; then " + (allowMissing ? "echo TOTO_OK; exit 0; " : "exit 1; ") + "fi; " +
+        "[ -d \"$d\" ] &amp;&amp; [ -r \"$d\" ] &amp;&amp; [ -x \"$d\" ] || exit 1; " +
+        "for f in \"$d\"/*; do [ -f \"$f\" ] || continue; " +
+        "case \"$f\" in *.[pP][nN][gG]|*.[jJ][pP][gG]|*.[jJ][pP][eE][gG]|*.[wW][eE][bB][pP]) " +
+        "stat -c '%s|%y|%n' \"$f\" || exit 1;; esac; done; echo TOTO_OK";
+    var output = shell(command, false, 20);
+    if (typeof output !== "string" || !/TOTO_OK\s*$/.test(output)) {
+        throw new Error("Cannot read Pictures/Toto. Check Tasker file access.");
+    }
+    var files = {};
+    output.replace(/TOTO_OK\s*$/, "").split("\n").forEach(function (line) {
+        if (!line) return;
+        var match = /^(\d+)\|([^|]+)\|(\/storage\/emulated\/0\/Pictures\/Toto\/[^\r\n]+)$/.exec(line);
+        if (!match) throw new Error("Unsupported image filename or file metadata.");
+        files[match[3]] = {size: Number(match[1]), stamp: match[1] + "|" + match[2]};
+    });
+    return files;
+}
+
+function totoSelect(before, after, stable) {
+    var changed = Object.keys(after).filter(function (path) {
+        return !before[path] || before[path].stamp !== after[path].stamp;
+    });
+    if (changed.length !== 1) {
+        throw new Error(changed.length ? "Several images changed; cannot choose the result safely." :
+            "No new or updated result image. Nothing sent.");
+    }
+    var path = changed[0];
+    var finalChanged = Object.keys(stable).filter(function (name) {
+        return !before[name] || before[name].stamp !== stable[name].stamp;
+    });
+    if (finalChanged.length !== 1 || finalChanged[0] !== path) {
+        throw new Error("Image selection changed while checking. Nothing sent.");
+    }
+    if (!after[path].size || !stable[path] || stable[path].stamp !== after[path].stamp) {
+        throw new Error("Result image is empty or still being written. Nothing sent.");
+    }
+    return path;
+}
+
+var toto_share_ready = "false";
+var toto_image = "";
+var toto_uri = "";
+var toto_error = "";
+try {
+    if (String(typeof result === "undefined" ? "" : result) !== "0") {
+        throw new Error("Termux did not report success. Nothing sent.");
+    }
+    var toto_first = totoSnapshot(false);
+    shell("sleep 1", false, 3);
+    toto_image = totoSelect(JSON.parse(toto_before), toto_first, totoSnapshot(false));
+    toto_uri = "file://" + toto_image.split("/").map(encodeURIComponent).join("/");
+    // Only indicates a validated file. The next native Send Intent action
+    // launches WhatsApp and stops the task if Android reports a launch error.
+    toto_share_ready = "true";
+} catch (error) {
+    toto_error = String(error.message || error);
+    flashLong("Toto: " + toto_error);
+}
+</Str>
+			<Str sr="arg1" ve="3" />
+			<Int sr="arg2" val="1" />
+			<Int sr="arg3" val="60" />
+		</Action>
+		<Action sr="act4" ve="7">
+			<code>37</code>
+			<ConditionList sr="if">
+				<Condition sr="c0" ve="3">
+					<lhs>%toto_share_ready</lhs>
+					<op>0</op>
+					<rhs>true</rhs>
+				</Condition>
+			</ConditionList>
+		</Action>
+		<Action sr="act5" ve="7">
+			<code>365</code>
+			<label>Create shareable content URI</label>
+			<Bundle sr="arg0" />
+			<Str sr="arg1" ve="3">FilePathToContentUri(%toto_image)</Str>
+		</Action>
+		<Action sr="act6" ve="7">
+			<code>474</code>
+			<label>Open WhatsApp with image read permission</label>
+			<Str sr="arg0" ve="3">import android.app.Activity;
+import android.content.Intent;
+import android.content.ClipData;
+import android.net.Uri;
+import java.util.function.Consumer;
+import java.util.concurrent.TimeUnit;
+import io.reactivex.subjects.SingleSubject;
+
+/* FilePathToContentUri supplies this using Tasker's configured provider. */
+String value = tasker.getVariable("content_uri");
+if (value == null || !value.startsWith("content://")) {
+    throw new IllegalStateException("Tasker did not create a content URI for the image.");
+}
+final Uri imageUri = Uri.parse(value);
+tasker.setVariable("toto_uri", value);
+final Intent shareIntent = new Intent(Intent.ACTION_SEND);
+shareIntent.setType("image/*");
+shareIntent.setPackage("com.whatsapp");
+shareIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
+shareIntent.putExtra("jid", "6281286373886@s.whatsapp.net");
+shareIntent.setClipData(ClipData.newRawUri("Toto result", imageUri));
+shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+/* Launch from an Activity, and wait for the callback before AutoInput starts. */
+final SingleSubject launched = SingleSubject.create();
+tasker.doWithActivity(new Consumer() {
+    accept(Object value) {
+        Activity activity = (Activity) value;
+        try {
+            activity.startActivity(shareIntent);
+            launched.onSuccess("WhatsApp share activity requested");
+        } catch (Exception error) {
+            launched.onError(error);
+        } finally {
+            activity.finish();
+        }
+    }
+});
+return launched.timeout(15, TimeUnit.SECONDS).blockingGet();
+</Str>
+			<Str sr="arg1" ve="3">%toto_launch_status</Str>
+			<Int sr="arg2" val="0" />
+		</Action>
+		<Action sr="act7" ve="7">
+			<code>107361459</code>
+			<Bundle sr="arg0">
+				<Vals sr="val">
+					<EnableDisableAccessibilityService>&lt;null&gt;</EnableDisableAccessibilityService>
+					<EnableDisableAccessibilityService-type>java.lang.String</EnableDisableAccessibilityService-type>
+					<Password>&lt;null&gt;</Password>
+					<Password-type>java.lang.String</Password-type>
+					<com.twofortyfouram.locale.intent.extra.BLURB>Actions To Perform: click(id,com.whatsapp:id/send)
+Not In AutoInput: true
+Not In Tasker: true
+App To Act In: com.whatsapp
+Text That Must Be Present: Mama
+Separator: ,
+Check Millis: 1000</com.twofortyfouram.locale.intent.extra.BLURB>
+					<com.twofortyfouram.locale.intent.extra.BLURB-type>java.lang.String</com.twofortyfouram.locale.intent.extra.BLURB-type>
+					<net.dinglisch.android.tasker.JSON_ENCODED_KEYS>parameters</net.dinglisch.android.tasker.JSON_ENCODED_KEYS>
+					<net.dinglisch.android.tasker.JSON_ENCODED_KEYS-type>java.lang.String</net.dinglisch.android.tasker.JSON_ENCODED_KEYS-type>
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES>&lt;StringArray sr=""&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;%ailastbounds
+Last Bounds
+Bounds (left,top,right,bottom) of the item that the action last interacted with&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES1&gt;%ailastcoordinates
+Last Coordinates
+Center coordinates (x,y) of the item that the action last interacted with&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES1&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES2&gt;%err
+Error Code
+Only available if you select &amp;lt;b&amp;gt;Continue Task After Error&amp;lt;/b&amp;gt; and the action ends in error&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES2&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES3&gt;%errmsg
+Error Message
+Only available if you select &amp;lt;b&amp;gt;Continue Task After Error&amp;lt;/b&amp;gt; and the action ends in error&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES3&gt;&lt;/StringArray&gt;</net.dinglisch.android.tasker.RELEVANT_VARIABLES>
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>[Ljava.lang.String;</net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>
+					<net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS>parameters plugininstanceid plugintypeid </net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS>
+					<net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS-type>java.lang.String</net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS-type>
+					<net.dinglisch.android.tasker.subbundled>true</net.dinglisch.android.tasker.subbundled>
+					<net.dinglisch.android.tasker.subbundled-type>java.lang.Boolean</net.dinglisch.android.tasker.subbundled-type>
+					<parameters>{"_action":"click(id,com.whatsapp:id/send)","_additionalOptions":{"checkMs":"1000","separator":",","withCoordinates":false},"_whenToPerformAction":{"currentApp":"com.whatsapp","notInAutoInput":true,"notInTasker":true,"textMustBePresent":"Mama"},"generatedValues":{}}</parameters>
+					<parameters-type>java.lang.String</parameters-type>
+					<plugininstanceid>b88c7391-f68f-42c4-a178-67f179b5d2c9</plugininstanceid>
+					<plugininstanceid-type>java.lang.String</plugininstanceid-type>
+					<plugintypeid>com.joaomgcd.autoinput.intent.IntentActionv2</plugintypeid>
+					<plugintypeid-type>java.lang.String</plugintypeid-type>
+				</Vals>
+			</Bundle>
+			<Str sr="arg1" ve="3">com.joaomgcd.autoinput</Str>
+			<Str sr="arg2" ve="3">com.joaomgcd.autoinput.activity.ActivityConfigActionv2</Str>
+			<Int sr="arg3" val="30" />
+			<Int sr="arg4" val="1" />
+		</Action>
+		<Action sr="act8" ve="7">
+			<code>38</code>
+		</Action>
+		<Action sr="act9" ve="7">
+			<code>38</code>
 		</Action>
 	</Task>
 	<Task sr="task65">
