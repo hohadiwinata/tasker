@@ -950,10 +950,9 @@ by anuraag488
 		<edate>1791337417684</edate>
 		<id>699</id>
 		<nme>Singapore Haze</nme>
-		<pri>6</pri>
+		<pri>100</pri>
 		<Action sr="act0" ve="7">
 			<code>339</code>
-			<se>true</se>
 			<Bundle sr="arg0" />
 			<Int sr="arg1" val="0" />
 			<Int sr="arg10" val="1" />
@@ -1043,7 +1042,9 @@ try {
 			<Int sr="arg13" val="0" />
 			<Str sr="arg14" ve="3">Singapore Haze</Str>
 			<Str sr="arg15" ve="3" />
-			<Img sr="arg2" ve="2" />
+			<Img sr="arg2" ve="2">
+				<nme>mw_image_dehaze</nme>
+			</Img>
 			<Int sr="arg3" val="0" />
 			<Int sr="arg4" val="0" />
 			<Int sr="arg5" val="1" />
