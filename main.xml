@@ -2739,7 +2739,6 @@ All installed and enabled Keyboard Apps' Package Names&lt;/_array_net.dinglisch.
 		<edate>1722221339275</edate>
 		<id>5</id>
 		<nme>Hello World</nme>
-		<pri>6</pri>
 		<Action sr="act0" ve="7">
 			<code>548</code>
 			<Str sr="arg0" ve="3">Hello World</Str>
