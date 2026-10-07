@@ -469,6 +469,20 @@ Note 2: In the same Preferences screen you can enable this to work with the scre
 			<wday4>6</wday4>
 		</Day>
 	</Profile>
+	<Profile sr="prof700" ve="2">
+		<cdate>1791337417684</cdate>
+		<edate>1791337417684</edate>
+		<flags>11</flags>
+		<id>700</id>
+		<mid0>699</mid0>
+		<nme>Singapore Haze Morning</nme>
+		<Time sr="con0">
+			<fh>6</fh>
+			<fm>55</fm>
+			<th>6</th>
+			<tm>55</tm>
+		</Time>
+	</Profile>
 	<Profile sr="prof72" ve="2">
 		<cdate>1732017712333</cdate>
 		<cldm>300</cldm>
@@ -748,20 +762,6 @@ The package name of the Extra Trigger app that triggered this event&lt;/_array_n
 			<pri>0</pri>
 		</Event>
 	</Profile>
-	<Profile sr="prof700" ve="2">
-		<cdate>1791337417684</cdate>
-		<edate>1791337417684</edate>
-		<flags>11</flags>
-		<id>700</id>
-		<mid0>699</mid0>
-		<nme>Singapore Haze Morning</nme>
-		<Time sr="con0">
-			<fh>6</fh>
-			<fm>55</fm>
-			<th>6</th>
-			<tm>55</tm>
-		</Time>
-	</Profile>
 	<Project sr="proj0" ve="2">
 		<cdate>1722002391802</cdate>
 		<id>a1aab72b-a77d-407a-82aa-e120bbcd87fb</id>
@@ -806,7 +806,7 @@ The package name of the Extra Trigger app that triggered this event&lt;/_array_n
 	<Project sr="proj3" ve="2">
 		<cdate>1723087648881</cdate>
 		<id>a58406db-c0da-4194-928e-c8bb1471efdb</id>
-		<mdate>1790656396995</mdate>
+		<mdate>1791349014368</mdate>
 		<name>Test</name>
 		<pids>31,43,86,92,93,47</pids>
 		<tids>5,10,2,35,39,40,15,21,696,698,48,22,49,57,58,61,63</tids>
@@ -945,115 +945,6 @@ by anuraag488
 			<Str sr="arg7" ve="3"/>
 		</PropertiesElement>
 	</Scene>
-	<Task sr="task699">
-		<cdate>1791337417684</cdate>
-		<edate>1791337417684</edate>
-		<id>699</id>
-		<nme>Singapore Haze</nme>
-		<pri>100</pri>
-		<Action sr="act0" ve="7">
-			<code>339</code>
-			<Bundle sr="arg0" />
-			<Int sr="arg1" val="0" />
-			<Int sr="arg10" val="1" />
-			<Int sr="arg11" val="1" />
-			<Int sr="arg12" val="0" />
-			<Str sr="arg2" ve="3">https://api-open.data.gov.sg/v2/real-time/api/psi</Str>
-			<Str sr="arg3" ve="3">Accept: application/json</Str>
-			<Str sr="arg4" ve="3" />
-			<Str sr="arg5" ve="3" />
-			<Str sr="arg6" ve="3" />
-			<Str sr="arg7" ve="3" />
-			<Int sr="arg8" val="30" />
-			<Int sr="arg9" val="0" />
-		</Action>
-		<Action sr="act1" ve="7">
-			<code>129</code>
-			<Str sr="arg0" ve="3">// Tasker JavaScriptlet: HTTP Request supplies http_data and http_response_code.
-var haze_title = "Singapore haze - PSI unavailable";
-var haze_text = "Could not retrieve the latest PSI. Check your connection or haze.gov.sg.";
-try {
-    if (String(typeof http_response_code === "undefined" ? "" : http_response_code) !== "200") {
-        throw new Error("HTTP request failed");
-    }
-    var payload = JSON.parse(String(http_data));
-    if (payload.code !== 0 || !payload.data || !Array.isArray(payload.data.items)) {
-        throw new Error("Invalid API response");
-    }
-    var latest = null;
-    var latestTime = -Infinity;
-    payload.data.items.forEach(function (item) {
-        var time = Date.parse(item.timestamp);
-        if (isFinite(time) &amp;&amp; time &gt; latestTime) {
-            latest = item;
-            latestTime = time;
-        }
-    });
-    if (!latest) throw new Error("No timestamped readings");
-    var age = Date.now() - latestTime;
-    if (age &lt; -300000) throw new Error("Future reading");
-    var regions = ["north", "south", "east", "west", "central"];
-    var readings = latest.readings.psi_twenty_four_hourly;
-    var values = regions.map(function (region) {
-        var value = readings[region];
-        if (typeof value !== "number" || !isFinite(value) || value &lt; 0 || Math.floor(value) !== value) {
-            throw new Error("Missing or invalid regional PSI");
-        }
-        return value;
-    });
-    var low = Math.min.apply(null, values);
-    var high = Math.max.apply(null, values);
-    var category = high &lt;= 50 ? "Good" : high &lt;= 100 ? "Moderate" :
-        high &lt;= 200 ? "Unhealthy" : high &lt;= 300 ? "Very Unhealthy" : "Hazardous";
-    var advice = high &lt;= 100 ? "Normal activities." : high &lt;= 200 ?
-        "Reduce prolonged or strenuous outdoor exertion." : high &lt;= 300 ?
-        "Avoid prolonged or strenuous outdoor exertion." : "Minimise outdoor activity.";
-    var sensitive = high &lt;= 100 ? "" : high &lt;= 200 ?
-        "Elderly, pregnant women and children: minimise prolonged or strenuous outdoor exertion. Heart/lung conditions: avoid it." :
-        high &lt;= 300 ? "Elderly, pregnant women and children: minimise outdoor activity. Heart/lung conditions: avoid outdoor activity." :
-        "Elderly, pregnant women, children and people with heart/lung conditions: avoid outdoor activity.";
-    var range = low === high ? String(high) : low + "-" + high;
-    var worst = regions.filter(function (region, index) { return values[index] === high; }).join(", ");
-    // UTC+8 formatting is independent of the phone's display time zone.
-    var readingTime = new Date(latestTime + 8 * 3600000).toISOString().slice(0, 16).replace("T", " ") + " SGT";
-    if (age &gt; 2 * 3600000) {
-        haze_title = "Singapore haze - stale PSI data";
-        haze_text = "Latest reading is over 2 hours old (" + readingTime + "). Last 24-hour PSI: " + range +
-            ". Current health category unavailable. Check haze.gov.sg.";
-    } else {
-        haze_title = "Singapore haze - PSI " + range + " (" + category + ")";
-        haze_text = "24-hour PSI, highest " + high + " in " + worst + ": " + category + ".\n" + advice +
-            (sensitive ? "\n" + sensitive : "") + "\nReading: " + readingTime + " | NEA/data.gov.sg";
-    }
-} catch (error) {
-    // Keep the failure notification; never infer a healthy PSI from missing data.
-}</Str>
-			<Str sr="arg1" ve="3" />
-			<Int sr="arg2" val="1" />
-			<Int sr="arg3" val="45" />
-		</Action>
-		<Action sr="act2" ve="7">
-			<code>523</code>
-			<Str sr="arg0" ve="3">%haze_title</Str>
-			<Str sr="arg1" ve="3">%haze_text</Str>
-			<Str sr="arg10" ve="3" />
-			<Str sr="arg11" ve="3" />
-			<Str sr="arg12" ve="3" />
-			<Int sr="arg13" val="0" />
-			<Str sr="arg14" ve="3">Singapore Haze</Str>
-			<Str sr="arg15" ve="3" />
-			<Img sr="arg2" ve="2">
-				<nme>mw_image_dehaze</nme>
-			</Img>
-			<Int sr="arg3" val="0" />
-			<Int sr="arg4" val="0" />
-			<Int sr="arg5" val="1" />
-			<Int sr="arg6" val="0" />
-			<Int sr="arg7" val="0" />
-			<Int sr="arg8" val="0" />
-			<Str sr="arg9" ve="3" />
-		</Action>
-	</Task>
 	<Task sr="task10">
 		<cdate>1722222767937</cdate>
 		<edate>1790386006271</edate>
@@ -3370,7 +3261,7 @@ If there's an error, contains an error message&lt;/_array_net.dinglisch.android.
 	</Task>
 	<Task sr="task63">
 		<cdate>1790655777447</cdate>
-		<edate>1790858575099</edate>
+		<edate>1791349007926</edate>
 		<id>63</id>
 		<nme>Termux Toto Result</nme>
 		<pri>100</pri>
@@ -3431,9 +3322,9 @@ try {
     flashLong("Toto: " + toto_error);
 }
 </Str>
-			<Str sr="arg1" ve="3" />
-			<Int sr="arg2" val="1" />
-			<Int sr="arg3" val="60" />
+			<Str sr="arg1" ve="3"/>
+			<Int sr="arg2" val="1"/>
+			<Int sr="arg3" val="60"/>
 		</Action>
 		<Action sr="act1" ve="7">
 			<code>37</code>
@@ -3457,7 +3348,7 @@ try {
 					<com.termux.tasker.extra.EXECUTABLE-type>java.lang.String</com.termux.tasker.extra.EXECUTABLE-type>
 					<com.termux.tasker.extra.SESSION_ACTION>&lt;null&gt;</com.termux.tasker.extra.SESSION_ACTION>
 					<com.termux.tasker.extra.SESSION_ACTION-type>java.lang.String</com.termux.tasker.extra.SESSION_ACTION-type>
-					<com.termux.tasker.extra.STDIN />
+					<com.termux.tasker.extra.STDIN></com.termux.tasker.extra.STDIN>
 					<com.termux.tasker.extra.STDIN-type>java.lang.String</com.termux.tasker.extra.STDIN-type>
 					<com.termux.tasker.extra.TERMINAL>false</com.termux.tasker.extra.TERMINAL>
 					<com.termux.tasker.extra.TERMINAL-type>java.lang.Boolean</com.termux.tasker.extra.TERMINAL-type>
@@ -3495,8 +3386,8 @@ The &amp;lt;B&amp;gt;exit code&amp;lt;/B&amp;gt; of the command.0 often means su
 			</Bundle>
 			<Str sr="arg1" ve="3">com.termux.tasker</Str>
 			<Str sr="arg2" ve="3">com.termux.tasker.EditConfigurationActivity</Str>
-			<Int sr="arg3" val="300" />
-			<Int sr="arg4" val="1" />
+			<Int sr="arg3" val="300"/>
+			<Int sr="arg4" val="1"/>
 		</Action>
 		<Action sr="act3" ve="7">
 			<code>129</code>
@@ -3564,9 +3455,9 @@ try {
     flashLong("Toto: " + toto_error);
 }
 </Str>
-			<Str sr="arg1" ve="3" />
-			<Int sr="arg2" val="1" />
-			<Int sr="arg3" val="60" />
+			<Str sr="arg1" ve="3"/>
+			<Int sr="arg2" val="1"/>
+			<Int sr="arg3" val="60"/>
 		</Action>
 		<Action sr="act4" ve="7">
 			<code>37</code>
@@ -3581,7 +3472,7 @@ try {
 		<Action sr="act5" ve="7">
 			<code>365</code>
 			<label>Create shareable content URI</label>
-			<Bundle sr="arg0" />
+			<Bundle sr="arg0"/>
 			<Str sr="arg1" ve="3">FilePathToContentUri(%toto_image)</Str>
 		</Action>
 		<Action sr="act6" ve="7">
@@ -3628,7 +3519,7 @@ tasker.doWithActivity(new Consumer() {
 return launched.timeout(15, TimeUnit.SECONDS).blockingGet();
 </Str>
 			<Str sr="arg1" ve="3">%toto_launch_status</Str>
-			<Int sr="arg2" val="0" />
+			<Int sr="arg2" val="0"/>
 		</Action>
 		<Action sr="act7" ve="7">
 			<code>107361459</code>
@@ -3672,8 +3563,8 @@ Only available if you select &amp;lt;b&amp;gt;Continue Task After Error&amp;lt;/
 			</Bundle>
 			<Str sr="arg1" ve="3">com.joaomgcd.autoinput</Str>
 			<Str sr="arg2" ve="3">com.joaomgcd.autoinput.activity.ActivityConfigActionv2</Str>
-			<Int sr="arg3" val="30" />
-			<Int sr="arg4" val="1" />
+			<Int sr="arg3" val="30"/>
+			<Int sr="arg4" val="1"/>
 		</Action>
 		<Action sr="act8" ve="7">
 			<code>38</code>
@@ -4142,6 +4033,115 @@ if ((response_code === "200" || response_code === "206") &amp;&amp; downloaded_f
 			<Str sr="arg1" ve="3"/>
 			<Int sr="arg2" val="1"/>
 			<Int sr="arg3" val="45"/>
+		</Action>
+	</Task>
+	<Task sr="task699">
+		<cdate>1791337417684</cdate>
+		<edate>1791351659184</edate>
+		<id>699</id>
+		<nme>Singapore Haze</nme>
+		<pri>100</pri>
+		<Action sr="act0" ve="7">
+			<code>339</code>
+			<Bundle sr="arg0"/>
+			<Int sr="arg1" val="0"/>
+			<Int sr="arg10" val="1"/>
+			<Int sr="arg11" val="1"/>
+			<Int sr="arg12" val="0"/>
+			<Str sr="arg2" ve="3">https://api-open.data.gov.sg/v2/real-time/api/psi</Str>
+			<Str sr="arg3" ve="3">Accept: application/json</Str>
+			<Str sr="arg4" ve="3"/>
+			<Str sr="arg5" ve="3"/>
+			<Str sr="arg6" ve="3"/>
+			<Str sr="arg7" ve="3"/>
+			<Int sr="arg8" val="30"/>
+			<Int sr="arg9" val="0"/>
+		</Action>
+		<Action sr="act1" ve="7">
+			<code>129</code>
+			<Str sr="arg0" ve="3">// Tasker JavaScriptlet: HTTP Request supplies http_data and http_response_code.
+var haze_title = "Singapore haze - PSI unavailable";
+var haze_text = "Could not retrieve the latest PSI. Check your connection or haze.gov.sg.";
+try {
+    if (String(typeof http_response_code === "undefined" ? "" : http_response_code) !== "200") {
+        throw new Error("HTTP request failed");
+    }
+    var payload = JSON.parse(String(http_data));
+    if (payload.code !== 0 || !payload.data || !Array.isArray(payload.data.items)) {
+        throw new Error("Invalid API response");
+    }
+    var latest = null;
+    var latestTime = -Infinity;
+    payload.data.items.forEach(function (item) {
+        var time = Date.parse(item.timestamp);
+        if (isFinite(time) &amp;&amp; time &gt; latestTime) {
+            latest = item;
+            latestTime = time;
+        }
+    });
+    if (!latest) throw new Error("No timestamped readings");
+    var age = Date.now() - latestTime;
+    if (age &lt; -300000) throw new Error("Future reading");
+    var regions = ["north", "south", "east", "west", "central"];
+    var readings = latest.readings.psi_twenty_four_hourly;
+    var values = regions.map(function (region) {
+        var value = readings[region];
+        if (typeof value !== "number" || !isFinite(value) || value &lt; 0 || Math.floor(value) !== value) {
+            throw new Error("Missing or invalid regional PSI");
+        }
+        return value;
+    });
+    var low = Math.min.apply(null, values);
+    var high = Math.max.apply(null, values);
+    var category = high &lt;= 50 ? "Good" : high &lt;= 100 ? "Moderate" :
+        high &lt;= 200 ? "Unhealthy" : high &lt;= 300 ? "Very Unhealthy" : "Hazardous";
+    var advice = high &lt;= 100 ? "Normal activities." : high &lt;= 200 ?
+        "Reduce prolonged or strenuous outdoor exertion." : high &lt;= 300 ?
+        "Avoid prolonged or strenuous outdoor exertion." : "Minimise outdoor activity.";
+    var sensitive = high &lt;= 100 ? "" : high &lt;= 200 ?
+        "Elderly, pregnant women and children: minimise prolonged or strenuous outdoor exertion. Heart/lung conditions: avoid it." :
+        high &lt;= 300 ? "Elderly, pregnant women and children: minimise outdoor activity. Heart/lung conditions: avoid outdoor activity." :
+        "Elderly, pregnant women, children and people with heart/lung conditions: avoid outdoor activity.";
+    var range = low === high ? String(high) : low + "-" + high;
+    var worst = regions.filter(function (region, index) { return values[index] === high; }).join(", ");
+    // UTC+8 formatting is independent of the phone's display time zone.
+    var readingTime = new Date(latestTime + 8 * 3600000).toISOString().slice(0, 16).replace("T", " ") + " SGT";
+    if (age &gt; 2 * 3600000) {
+        haze_title = "Singapore haze - stale PSI data";
+        haze_text = "Latest reading is over 2 hours old (" + readingTime + "). Last 24-hour PSI: " + range +
+            ". Current health category unavailable. Check haze.gov.sg.";
+    } else {
+        haze_title = "Singapore haze - PSI " + range + " (" + category + ")";
+        haze_text = "24-hour PSI, highest " + high + " in " + worst + ": " + category + ".\n" + advice +
+            (sensitive ? "\n" + sensitive : "") + "\nReading: " + readingTime + " | NEA/data.gov.sg";
+    }
+} catch (error) {
+    // Keep the failure notification; never infer a healthy PSI from missing data.
+}</Str>
+			<Str sr="arg1" ve="3"/>
+			<Int sr="arg2" val="1"/>
+			<Int sr="arg3" val="45"/>
+		</Action>
+		<Action sr="act2" ve="7">
+			<code>523</code>
+			<Str sr="arg0" ve="3">%haze_title</Str>
+			<Str sr="arg1" ve="3">%haze_text</Str>
+			<Str sr="arg10" ve="3"/>
+			<Str sr="arg11" ve="3"/>
+			<Str sr="arg12" ve="3"/>
+			<Int sr="arg13" val="0"/>
+			<Str sr="arg14" ve="3">Singapore Haze</Str>
+			<Str sr="arg15" ve="3"/>
+			<Img sr="arg2" ve="2">
+				<nme>mw_image_dehaze</nme>
+			</Img>
+			<Int sr="arg3" val="0"/>
+			<Int sr="arg4" val="0"/>
+			<Int sr="arg5" val="1"/>
+			<Int sr="arg6" val="0"/>
+			<Int sr="arg7" val="0"/>
+			<Int sr="arg8" val="0"/>
+			<Str sr="arg9" ve="3"/>
 		</Action>
 	</Task>
 	<Task sr="task7">
