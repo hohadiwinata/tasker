@@ -705,7 +705,6 @@ Note 2: In the same Preferences screen you can enable this to work with the scre
 		<edate>1790333576768</edate>
 		<flags>10</flags>
 		<id>90</id>
-		<limit>true</limit>
 		<mid0>88</mid0>
 		<nme>Network Speed Monitor Start</nme>
 		<Event sr="con0" ve="2">
