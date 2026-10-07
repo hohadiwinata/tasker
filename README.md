@@ -1,3 +1,13 @@
+# Singapore morning haze notification
+
+[main.xml](main.xml) includes **Singapore Haze Morning** and its **Singapore Haze** task in **Base**. The enabled profile runs every day at **06:55 in the phone's time zone**. Keep your phone set to **Asia/Singapore (GMT+8)** for 6:55 AM Singapore time.
+
+The task fetches the latest [official NEA PSI feed on data.gov.sg](https://api-open.data.gov.sg/v2/real-time/api/psi), then sends an Android notification with the **24-hour PSI range across all five regions**, the highest value and region, its health category, a short activity advisory, and the reading time in SGT. Categories follow [MOH's haze advisory](https://www.moh.gov.sg/others/haze/): **0–50 Good; 51–100 Moderate; 101–200 Unhealthy; 201–300 Very Unhealthy; above 300 Hazardous**. The displayed category uses the highest regional reading. PSI is a rolling 24-hour measure, updated hourly, so the morning notification may show the 06:00 reading.
+
+Restore this backup in Tasker to activate the included profile; restoring replaces your existing Tasker configuration. To keep your current configuration, import [Singapore Haze.tsk.xml](Singapore%20Haze.tsk.xml) while viewing **Base**, then create a daily **Time** profile with both **From** and **To** set to **06:55**, linked to **Singapore Haze**. Run the task once to check delivery. Allow Tasker notifications and background execution; internet access is required. This repository edit does not install the automation on your phone.
+
+If the request fails or readings are invalid, the task sends **PSI unavailable**. Readings older than two hours are labelled **stale**, with no current health judgement. Edit [singapore-haze.js](singapore-haze.js), then run `python build-haze.py` to synchronise the task exports. Run `node test-singapore-haze.js` to check parsing and health categories.
+
 # Hong Kong trip countdown widget
 
 A compact **1 × 2** [Tasker Widget v2](https://tasker.joaoapps.com/userguide/en/help/ah_widget_v2.html) for the trip on **22 November 2026**. It counts calendar days in Hong Kong (UTC+8), so the displayed day changes at Hong Kong midnight. It shows **TODAY** on the 22nd and a post-trip message afterward.
