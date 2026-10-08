@@ -8017,41 +8017,92 @@ setLocal("yt_url", yt_url);</Str>
 			<Int sr="arg2" val="1"></Int>
 			<Int sr="arg3" val="60"></Int>
 		</Action>
-		<Action sr="act2" ve="7">
-			<code>360</code>
+		<Action ve="7" sr="act2">
+			<code>378</code>
 			<label>Download format</label>
 			<Bundle sr="arg0">
 				<Vals sr="val">
-					<net.dinglisch.android.tasker.RELEVANT_VARIABLES>&lt;StringArray sr=""&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;%input
-Input
-The text that was inserted in the dialog&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;&lt;/StringArray&gt;</net.dinglisch.android.tasker.RELEVANT_VARIABLES>
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES>&lt;StringArray sr=""&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;%ld_selected
+Selected Item
+The selected item&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;&lt;/StringArray&gt;</net.dinglisch.android.tasker.RELEVANT_VARIABLES>
 					<net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>[Ljava.lang.String;</net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>
 				</Vals>
 			</Bundle>
-			<Str sr="arg1" ve="3">Download format</Str>
-			<Str sr="arg2" ve="3">Enter Video or Audio (MP3)</Str>
-			<Str sr="arg3" ve="3">Video</Str>
-			<Int sr="arg4" val="120"></Int>
-			<Str sr="arg5" ve="3">1</Str>
-			<Int sr="arg6" val="0"></Int>
-			<Int sr="arg7" val="0"></Int>
+			<Int sr="arg1" val="0"></Int>
+			<Str sr="arg2" ve="3">Download format</Str>
+			<Str sr="arg3" ve="3">Video,Audio</Str>
+			<Str sr="arg4" ve="3"></Str>
+			<Str sr="arg5" ve="3"></Str>
+			<Str sr="arg6" ve="3"></Str>
+			<Str sr="arg7" ve="3"></Str>
 			<Str sr="arg8" ve="3"></Str>
+			<Int sr="arg9" val="120"></Int>
+			<Int sr="arg10" val="0"></Int>
+			<Int sr="arg11" val="0"></Int>
+			<Int sr="arg12" val="1"></Int>
+			<Str sr="arg13" ve="3"></Str>
 		</Action>
 		<Action sr="act3" ve="7">
 			<code>129</code>
-			<label>Prepare download request</label>
-			<Str sr="arg0" ve="3">var yt_mode = String(local("input") || "").trim().toLowerCase();
+			<label>Remember selected format</label>
+			<Str sr="arg0" ve="3">var yt_mode = String(local("ld_selected") || "").toLowerCase();
 if (yt_mode !== "video" &amp;&amp; yt_mode !== "audio") {
-    flash("Enter Video or Audio.");
-    throw new Error("Invalid download mode");
+    throw new Error("No download format selected");
 }
-setLocal("yt_request", JSON.stringify({url: local("yt_url"), mode: yt_mode}));
-flash("Downloading " + yt_mode + " in Termux...");</Str>
+setLocal("yt_mode", yt_mode);</Str>
 			<Str sr="arg1" ve="3"></Str>
 			<Int sr="arg2" val="1"></Int>
 			<Int sr="arg3" val="60"></Int>
 		</Action>
-		<Action sr="act4" ve="7">
+		<Action ve="7" sr="act4">
+			<code>378</code>
+			<label>Maximum video resolution</label>
+			<Bundle sr="arg0">
+				<Vals sr="val">
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES>&lt;StringArray sr=""&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;%ld_selected
+Selected Item
+The selected item&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;&lt;/StringArray&gt;</net.dinglisch.android.tasker.RELEVANT_VARIABLES>
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>[Ljava.lang.String;</net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>
+				</Vals>
+			</Bundle>
+			<Int sr="arg1" val="0"></Int>
+			<Str sr="arg2" ve="3">Maximum video resolution</Str>
+			<Str sr="arg3" ve="3">Best available,2160p,1440p,1080p,720p,480p,360p</Str>
+			<Str sr="arg4" ve="3"></Str>
+			<Str sr="arg5" ve="3"></Str>
+			<Str sr="arg6" ve="3"></Str>
+			<Str sr="arg7" ve="3"></Str>
+			<Str sr="arg8" ve="3"></Str>
+			<Int sr="arg9" val="120"></Int>
+			<Int sr="arg10" val="0"></Int>
+			<Int sr="arg11" val="0"></Int>
+			<Int sr="arg12" val="1"></Int>
+			<Str sr="arg13" ve="3"></Str>
+			<ConditionList sr="if">
+				<Condition sr="c0" ve="3">
+					<lhs>%yt_mode</lhs>
+					<op>0</op>
+					<rhs>video</rhs>
+				</Condition>
+			</ConditionList>
+		</Action>
+		<Action sr="act5" ve="7">
+			<code>129</code>
+			<label>Prepare download request</label>
+			<Str sr="arg0" ve="3">var resolution = "best";
+if (local("yt_mode") === "video") {
+    var selected = String(local("ld_selected") || "");
+    if (selected === "Best available") resolution = "best";
+    else if (/^(2160|1440|1080|720|480|360)p$/.test(selected)) resolution = selected.slice(0, -1);
+    else throw new Error("No video resolution selected");
+}
+setLocal("yt_request", JSON.stringify({url: local("yt_url"), mode: local("yt_mode"), resolution: resolution}));
+flash("Downloading " + local("yt_mode") + " in Termux...");</Str>
+			<Str sr="arg1" ve="3"></Str>
+			<Int sr="arg2" val="1"></Int>
+			<Int sr="arg3" val="60"></Int>
+		</Action>
+		<Action sr="act6" ve="7">
 			<code>1256900802</code>
 			<se>1</se>
 			<label>Download with Termux:Tasker</label>
@@ -8103,7 +8154,7 @@ The &amp;lt;B&amp;gt;exit code&amp;lt;/B&amp;gt; of the command.0 often means su
 			<Int sr="arg3" val="3600"></Int>
 			<Int sr="arg4" val="1"></Int>
 		</Action>
-		<Action sr="act5" ve="7">
+		<Action sr="act7" ve="7">
 			<code>129</code>
 			<label>Report download result</label>
 			<Str sr="arg0" ve="3">if (String(local("result")) !== "0" || local("err")) {

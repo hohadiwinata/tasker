@@ -36,6 +36,28 @@ def dialog(title, prompt, default=''):
     add(action, title)
 
 
+def selection(title, items, video_only=False):
+    action = ET.Element('Action', {'ve': '7'})
+    ET.SubElement(action, 'code').text = '378'
+    bundle = ET.SubElement(action, 'Bundle', {'sr': 'arg0'})
+    vals = ET.SubElement(bundle, 'Vals', {'sr': 'val'})
+    key = 'net.dinglisch.android.tasker.RELEVANT_VARIABLES'
+    ET.SubElement(vals, key).text = '<StringArray sr=""><_array_' + key + '0>%ld_selected\nSelected Item\nThe selected item</_array_' + key + '0></StringArray>'
+    ET.SubElement(vals, key + '-type').text = '[Ljava.lang.String;'
+    ET.SubElement(action, 'Int', {'sr': 'arg1', 'val': '0'})
+    for i, text in [(2, title), (3, ','.join(items)), (4, ''), (5, ''),
+                    (6, ''), (7, ''), (8, ''), (13, '')]:
+        ET.SubElement(action, 'Str', {'sr': 'arg' + str(i), 've': '3'}).text = text
+    for i, value in [(9, 120), (10, 0), (11, 0), (12, 1)]:
+        ET.SubElement(action, 'Int', {'sr': 'arg' + str(i), 'val': str(value)})
+    add(action, title)
+    if video_only:
+        condition = ET.SubElement(ET.SubElement(action, 'ConditionList', {'sr': 'if'}),
+                                  'Condition', {'sr': 'c0', 've': '3'})
+        for tag, value in [('lhs', '%yt_mode'), ('op', '0'), ('rhs', 'video')]:
+            ET.SubElement(condition, tag).text = value
+
+
 def js(label, code):
     action = deepcopy(js_template)
     action.find("Str[@sr='arg0']").text = code
@@ -49,14 +71,22 @@ if (!/^https?:\\/\\/[^\\s/]+(?:[/?#][^\\s]*)?$/i.test(yt_url)) {
     throw new Error("Invalid download URL");
 }
 setLocal("yt_url", yt_url);''')
-dialog('Download format', 'Enter Video or Audio (MP3)', 'Video')
-js('Prepare download request', '''var yt_mode = String(local("input") || "").trim().toLowerCase();
+selection('Download format', ['Video', 'Audio'])
+js('Remember selected format', '''var yt_mode = String(local("ld_selected") || "").toLowerCase();
 if (yt_mode !== "video" && yt_mode !== "audio") {
-    flash("Enter Video or Audio.");
-    throw new Error("Invalid download mode");
+    throw new Error("No download format selected");
 }
-setLocal("yt_request", JSON.stringify({url: local("yt_url"), mode: yt_mode}));
-flash("Downloading " + yt_mode + " in Termux...");''')
+setLocal("yt_mode", yt_mode);''')
+selection('Maximum video resolution', ['Best available', '2160p', '1440p', '1080p', '720p', '480p', '360p'], video_only=True)
+js('Prepare download request', '''var resolution = "best";
+if (local("yt_mode") === "video") {
+    var selected = String(local("ld_selected") || "");
+    if (selected === "Best available") resolution = "best";
+    else if (/^(2160|1440|1080|720|480|360)p$/.test(selected)) resolution = selected.slice(0, -1);
+    else throw new Error("No video resolution selected");
+}
+setLocal("yt_request", JSON.stringify({url: local("yt_url"), mode: local("yt_mode"), resolution: resolution}));
+flash("Downloading " + local("yt_mode") + " in Termux...");''')
 plugin = deepcopy(plugin_template)
 vals = plugin.find('Bundle/Vals')
 for tag, value in {
@@ -82,7 +112,7 @@ flash("Download complete: Download/YouTube");''')
 for action in task.findall('Action'):
     children = list(action)
     rank = {'code': 0, 'se': 1, 'label': 2}
-    action[:] = sorted(children, key=lambda child: rank.get(child.tag, 3))
+    action[:] = sorted(children, key=lambda child: (rank.get(child.tag, 3), int(child.get('sr')[3:]) if child.get('sr', '').startswith('arg') else 99))
 ET.indent(task, space='\t', level=1)
 task_xml = ET.tostring(task, encoding='unicode', short_empty_elements=False)
 export = '<TaskerData sr="" dvi="1" tv="' + root.get('tv') + '">\n\t' + task_xml + '\n</TaskerData>\n'
