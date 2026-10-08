@@ -8017,7 +8017,7 @@ setLocal("yt_url", yt_url);</Str>
 			<Int sr="arg2" val="1"></Int>
 			<Int sr="arg3" val="60"></Int>
 		</Action>
-		<Action ve="7" sr="act2">
+		<Action sr="act2" ve="7">
 			<code>378</code>
 			<label>Download format</label>
 			<Bundle sr="arg0">
@@ -8054,7 +8054,7 @@ setLocal("yt_mode", yt_mode);</Str>
 			<Int sr="arg2" val="1"></Int>
 			<Int sr="arg3" val="60"></Int>
 		</Action>
-		<Action ve="7" sr="act4">
+		<Action sr="act4" ve="7">
 			<code>378</code>
 			<label>Maximum video resolution</label>
 			<Bundle sr="arg0">

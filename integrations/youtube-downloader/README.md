@@ -48,6 +48,22 @@ A video URL containing a playlist downloads only that video.
    Cancelling or timing out any dialog stops the task. Each dialog has a
    120-second timeout. Invalid input stops with an error.
 
+## Repair a task that imports with only two actions
+
+An earlier export put `ve` before `sr` on the two new List Dialog actions.
+Tasker imported only the URL dialog and its validation action on the reported
+phone. The corrected generator writes native `sr`-then-`ve` attributes for every
+action. A regression check covers that ordering in both XML exports.
+
+Download the corrected task again, rename the existing incomplete task to
+**youtube downloader broken**, then import the corrected XML while viewing
+**Test**. Open the new **youtube downloader** and verify it has **eight actions**,
+with **List Dialog** at actions **3** and **5** and **Termux:Tasker** at action **7**.
+The sequence is URL input, URL validation, Video/Audio list, remember format,
+video resolution list, prepare request, download, and report result. The
+resolution list runs only when Video is selected. The Python script does not
+need to be replaced for this XML repair.
+
 ## Termux:Tasker configuration
 
 The imported seventh action uses these settings:

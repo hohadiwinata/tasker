@@ -117,6 +117,23 @@ class DownloaderTests(unittest.TestCase):
         self.assertEqual(vals.findtext('com.termux.execute.arguments'), '<null>')
         self.assertEqual(vals.findtext('com.termux.tasker.extra.WAIT_FOR_RESULT'), 'true')
 
+    def test_native_export_attribute_order(self):
+        # ElementTree normally considers these attributes equivalent, but Tasker
+        # stopped at action 3 when a List Dialog was serialized as ve then sr.
+        for filename in ('youtube downloader.tsk.xml', 'main.xml'):
+            with self.subTest(filename=filename):
+                root = ET.parse(ROOT / filename).getroot()
+                task = next(t for t in root.findall('Task')
+                            if t.findtext('nme') == 'youtube downloader')
+                self.assertEqual(task.get('sr'), 'task' + task.findtext('id'))
+                for index, action in enumerate(task.findall('Action')):
+                    self.assertEqual(list(action.attrib), ['sr', 've'],
+                                     f'{filename}: action {index + 1} uses non-native attribute order')
+                    self.assertEqual(action.get('sr'), f'act{index}')
+                    arguments = [int(child.get('sr')[3:]) for child in action
+                                 if child.get('sr', '').startswith('arg')]
+                    self.assertEqual(arguments, sorted(arguments))
+
     def test_progress_throttling_silent_flags_and_completion(self):
         with patch.object(downloader.shutil, 'which', return_value='termux-notification'), \
              patch.object(subprocess, 'run', return_value=subprocess.CompletedProcess([], 0)) as run, \

@@ -21,7 +21,14 @@ for tag, value in [('cdate', '1791360000000'), ('edate', '1791360000000'),
 
 
 def add(action, label):
+    # Tasker's importer depends on native attribute order, although XML itself does not.
+    # Inserting sr after ve caused the phone import to stop at the first List Dialog.
+    attributes = dict(action.attrib)
+    action.attrib.clear()
     action.set('sr', 'act' + str(len(task.findall('Action'))))
+    for key, value in attributes.items():
+        if key != 'sr':
+            action.set(key, value)
     for child in list(action):
         if child.tag in ('label', 'ConditionList'): action.remove(child)
     ET.SubElement(action, 'label').text = label
