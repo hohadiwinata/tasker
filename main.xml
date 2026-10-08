@@ -809,7 +809,7 @@ The package name of the Extra Trigger app that triggered this event&lt;/_array_n
 		<mdate>1791349014368</mdate>
 		<name>Test</name>
 		<pids>31,43,86,92,93,47</pids>
-		<tids>5,10,2,35,39,40,15,21,696,698,48,22,49,57,58,61,63</tids>
+		<tids>5,10,2,35,39,40,15,21,696,698,48,22,49,57,58,61,63,701</tids>
 		<Img sr="icon" ve="2">
 			<nme>mw_action_build</nme>
 		</Img>
@@ -7976,6 +7976,195 @@ tasker.doWithActivity(new Consumer() {
 			<Int sr="arg0" val="1"/>
 			<Str sr="arg1" ve="3">Zelda Majoras Mask</Str>
 			<Int sr="arg2" val="5"/>
+		</Action>
+	</Task>
+	<Task sr="task701">
+		<cdate>1791360000000</cdate>
+		<edate>1791360000000</edate>
+		<id>701</id>
+		<nme>youtube downloader</nme>
+		<pri>6</pri>
+		<Action sr="act0" ve="7">
+			<code>360</code>
+			<label>YouTube downloader</label>
+			<Bundle sr="arg0">
+				<Vals sr="val">
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES>&lt;StringArray sr=""&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;%input
+Input
+The text that was inserted in the dialog&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;&lt;/StringArray&gt;</net.dinglisch.android.tasker.RELEVANT_VARIABLES>
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>[Ljava.lang.String;</net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>
+				</Vals>
+			</Bundle>
+			<Str sr="arg1" ve="3">YouTube downloader</Str>
+			<Str sr="arg2" ve="3">Paste the video URL</Str>
+			<Str sr="arg3" ve="3"></Str>
+			<Int sr="arg4" val="120"></Int>
+			<Str sr="arg5" ve="3">1</Str>
+			<Int sr="arg6" val="0"></Int>
+			<Int sr="arg7" val="0"></Int>
+			<Str sr="arg8" ve="3"></Str>
+		</Action>
+		<Action sr="act1" ve="7">
+			<code>129</code>
+			<label>Validate and remember URL</label>
+			<Str sr="arg0" ve="3">var yt_url = String(local("input") || "").trim();
+if (!/^https?:\/\/[^\s/]+(?:[/?#][^\s]*)?$/i.test(yt_url)) {
+    flash("Enter a complete HTTP or HTTPS URL.");
+    throw new Error("Invalid download URL");
+}
+setLocal("yt_url", yt_url);</Str>
+			<Str sr="arg1" ve="3"></Str>
+			<Int sr="arg2" val="1"></Int>
+			<Int sr="arg3" val="60"></Int>
+		</Action>
+		<Action sr="act2" ve="7">
+			<code>378</code>
+			<label>Download format</label>
+			<Bundle sr="arg0">
+				<Vals sr="val">
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES>&lt;StringArray sr=""&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;%ld_selected
+Selected Item
+The selected item&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;&lt;/StringArray&gt;</net.dinglisch.android.tasker.RELEVANT_VARIABLES>
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>[Ljava.lang.String;</net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>
+				</Vals>
+			</Bundle>
+			<Int sr="arg1" val="0"></Int>
+			<Str sr="arg2" ve="3">Download format</Str>
+			<Str sr="arg3" ve="3">Video,Audio</Str>
+			<Str sr="arg4" ve="3"></Str>
+			<Str sr="arg5" ve="3"></Str>
+			<Str sr="arg6" ve="3"></Str>
+			<Str sr="arg7" ve="3"></Str>
+			<Str sr="arg8" ve="3"></Str>
+			<Int sr="arg9" val="120"></Int>
+			<Int sr="arg10" val="0"></Int>
+			<Int sr="arg11" val="0"></Int>
+			<Int sr="arg12" val="1"></Int>
+			<Str sr="arg13" ve="3"></Str>
+		</Action>
+		<Action sr="act3" ve="7">
+			<code>129</code>
+			<label>Remember selected format</label>
+			<Str sr="arg0" ve="3">var yt_mode = String(local("ld_selected") || "").toLowerCase();
+if (yt_mode !== "video" &amp;&amp; yt_mode !== "audio") {
+    throw new Error("No download format selected");
+}
+setLocal("yt_mode", yt_mode);</Str>
+			<Str sr="arg1" ve="3"></Str>
+			<Int sr="arg2" val="1"></Int>
+			<Int sr="arg3" val="60"></Int>
+		</Action>
+		<Action sr="act4" ve="7">
+			<code>378</code>
+			<label>Maximum video resolution</label>
+			<Bundle sr="arg0">
+				<Vals sr="val">
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES>&lt;StringArray sr=""&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;%ld_selected
+Selected Item
+The selected item&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;&lt;/StringArray&gt;</net.dinglisch.android.tasker.RELEVANT_VARIABLES>
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>[Ljava.lang.String;</net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>
+				</Vals>
+			</Bundle>
+			<Int sr="arg1" val="0"></Int>
+			<Str sr="arg2" ve="3">Maximum video resolution</Str>
+			<Str sr="arg3" ve="3">Best available,2160p,1440p,1080p,720p,480p,360p</Str>
+			<Str sr="arg4" ve="3"></Str>
+			<Str sr="arg5" ve="3"></Str>
+			<Str sr="arg6" ve="3"></Str>
+			<Str sr="arg7" ve="3"></Str>
+			<Str sr="arg8" ve="3"></Str>
+			<Int sr="arg9" val="120"></Int>
+			<Int sr="arg10" val="0"></Int>
+			<Int sr="arg11" val="0"></Int>
+			<Int sr="arg12" val="1"></Int>
+			<Str sr="arg13" ve="3"></Str>
+			<ConditionList sr="if">
+				<Condition sr="c0" ve="3">
+					<lhs>%yt_mode</lhs>
+					<op>0</op>
+					<rhs>video</rhs>
+				</Condition>
+			</ConditionList>
+		</Action>
+		<Action sr="act5" ve="7">
+			<code>129</code>
+			<label>Prepare download request</label>
+			<Str sr="arg0" ve="3">var resolution = "best";
+if (local("yt_mode") === "video") {
+    var selected = String(local("ld_selected") || "");
+    if (selected === "Best available") resolution = "best";
+    else if (/^(2160|1440|1080|720|480|360)p$/.test(selected)) resolution = selected.slice(0, -1);
+    else throw new Error("No video resolution selected");
+}
+setLocal("yt_request", JSON.stringify({url: local("yt_url"), mode: local("yt_mode"), resolution: resolution}));
+flash("Downloading " + local("yt_mode") + " in Termux...");</Str>
+			<Str sr="arg1" ve="3"></Str>
+			<Int sr="arg2" val="1"></Int>
+			<Int sr="arg3" val="60"></Int>
+		</Action>
+		<Action sr="act6" ve="7">
+			<code>1256900802</code>
+			<se>1</se>
+			<label>Download with Termux:Tasker</label>
+			<Bundle sr="arg0">
+				<Vals sr="val">
+					<com.termux.execute.arguments>&lt;null&gt;</com.termux.execute.arguments>
+					<com.termux.execute.arguments-type>java.lang.String</com.termux.execute.arguments-type>
+					<com.termux.tasker.extra.BACKGROUND_CUSTOM_LOG_LEVEL>&lt;null&gt;</com.termux.tasker.extra.BACKGROUND_CUSTOM_LOG_LEVEL>
+					<com.termux.tasker.extra.BACKGROUND_CUSTOM_LOG_LEVEL-type>java.lang.String</com.termux.tasker.extra.BACKGROUND_CUSTOM_LOG_LEVEL-type>
+					<com.termux.tasker.extra.EXECUTABLE>youtube_downloader.py</com.termux.tasker.extra.EXECUTABLE>
+					<com.termux.tasker.extra.EXECUTABLE-type>java.lang.String</com.termux.tasker.extra.EXECUTABLE-type>
+					<com.termux.tasker.extra.SESSION_ACTION>&lt;null&gt;</com.termux.tasker.extra.SESSION_ACTION>
+					<com.termux.tasker.extra.SESSION_ACTION-type>java.lang.String</com.termux.tasker.extra.SESSION_ACTION-type>
+					<com.termux.tasker.extra.STDIN>%yt_request</com.termux.tasker.extra.STDIN>
+					<com.termux.tasker.extra.STDIN-type>java.lang.String</com.termux.tasker.extra.STDIN-type>
+					<com.termux.tasker.extra.TERMINAL>false</com.termux.tasker.extra.TERMINAL>
+					<com.termux.tasker.extra.TERMINAL-type>java.lang.Boolean</com.termux.tasker.extra.TERMINAL-type>
+					<com.termux.tasker.extra.VERSION_CODE>1002</com.termux.tasker.extra.VERSION_CODE>
+					<com.termux.tasker.extra.VERSION_CODE-type>java.lang.Integer</com.termux.tasker.extra.VERSION_CODE-type>
+					<com.termux.tasker.extra.WAIT_FOR_RESULT>true</com.termux.tasker.extra.WAIT_FOR_RESULT>
+					<com.termux.tasker.extra.WAIT_FOR_RESULT-type>java.lang.Boolean</com.termux.tasker.extra.WAIT_FOR_RESULT-type>
+					<com.termux.tasker.extra.WORKDIR>&lt;null&gt;</com.termux.tasker.extra.WORKDIR>
+					<com.termux.tasker.extra.WORKDIR-type>java.lang.String</com.termux.tasker.extra.WORKDIR-type>
+					<com.twofortyfouram.locale.intent.extra.BLURB>youtube_downloader.py
+Stdin: %yt_request
+Terminal Session: false
+Wait For Result: true</com.twofortyfouram.locale.intent.extra.BLURB>
+					<com.twofortyfouram.locale.intent.extra.BLURB-type>java.lang.String</com.twofortyfouram.locale.intent.extra.BLURB-type>
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES>&lt;StringArray sr=""&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;%stdout
+Standard Output
+The &amp;lt;B&amp;gt;stdout&amp;lt;/B&amp;gt; of the command.&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES1&gt;%stdout_original_length
+Standard Output Original Length
+The original length of &amp;lt;B&amp;gt;stdout&amp;lt;/B&amp;gt;.&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES1&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES2&gt;%stderr
+Standard Error
+The &amp;lt;B&amp;gt;stderr&amp;lt;/B&amp;gt; of the command.&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES2&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES3&gt;%stderr_original_length
+Standard Error Original Length
+The original length of &amp;lt;B&amp;gt;stderr&amp;lt;/B&amp;gt;.&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES3&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES4&gt;%result
+Exit Code
+The &amp;lt;B&amp;gt;exit code&amp;lt;/B&amp;gt; of the command.0 often means success and anything else is usually a failure of some sort.&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES4&gt;&lt;/StringArray&gt;</net.dinglisch.android.tasker.RELEVANT_VARIABLES>
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>[Ljava.lang.String;</net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>
+					<net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS>com.termux.tasker.extra.EXECUTABLE com.termux.execute.arguments com.termux.tasker.extra.WORKDIR com.termux.tasker.extra.STDIN com.termux.tasker.extra.SESSION_ACTION com.termux.tasker.extra.BACKGROUND_CUSTOM_LOG_LEVEL</net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS>
+					<net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS-type>java.lang.String</net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS-type>
+					<net.dinglisch.android.tasker.subbundled>true</net.dinglisch.android.tasker.subbundled>
+					<net.dinglisch.android.tasker.subbundled-type>java.lang.Boolean</net.dinglisch.android.tasker.subbundled-type>
+				</Vals>
+			</Bundle>
+			<Str sr="arg1" ve="3">com.termux.tasker</Str>
+			<Str sr="arg2" ve="3">com.termux.tasker.EditConfigurationActivity</Str>
+			<Int sr="arg3" val="3600"></Int>
+			<Int sr="arg4" val="1"></Int>
+		</Action>
+		<Action sr="act7" ve="7">
+			<code>129</code>
+			<label>Report download result</label>
+			<Str sr="arg0" ve="3">if (String(local("result")) !== "0" || local("err")) {
+    flash("Download failed or timed out. Check Tasker Run Log and Termux setup.");
+    throw new Error(String(local("stderr") || local("errmsg") || "No successful Termux result"));
+}
+flash("Download complete: Download/YouTube");</Str>
+			<Str sr="arg1" ve="3"></Str>
+			<Int sr="arg2" val="1"></Int>
+			<Int sr="arg3" val="60"></Int>
 		</Action>
 	</Task>
 </TaskerData>

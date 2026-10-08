@@ -1,3 +1,12 @@
+# YouTube downloader
+
+**Test → youtube downloader** asks for a URL, offers Video/Audio and resolution selection lists, then downloads
+through Termux:Tasker and yt-dlp to **Download/YouTube**. Import
+[youtube downloader.tsk.xml](youtube%20downloader.tsk.xml) while viewing **Test**.
+Follow the [Termux installation and setup guide](integrations/youtube-downloader/README.md)
+first. Silent progress notifications use Termux:API. The task is also included in `main.xml`; phone import and live downloads
+still need on-device verification.
+
 # Termux Toto result to Mama on WhatsApp
 
 **Test → Termux Toto Result** now snapshots images in **Internal storage/Pictures/Toto**, runs the existing `toto_tasker.py` with **Wait For Result** enabled and a **300-second timeout**, then shares the single new or updated PNG/JPG/JPEG/WebP to Mama. Mama's number (ending **3886**) was looked up in Google Contacts and is embedded as the WhatsApp recipient in the task. No caption is added.
